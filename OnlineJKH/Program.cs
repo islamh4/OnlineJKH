@@ -1,10 +1,17 @@
+using Microsoft.EntityFrameworkCore;
+using OnlineJKH.BLL;
+using OnlineJKH.BLL.Interfaces;
+using OnlineJKH.BLL.Service;
+using OnlineJKH.DAL.EF;
+
 var builder = WebApplication.CreateBuilder(args);
-
+string connection = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<EFDBContext>(options => options.UseSqlServer(connection));
 // Add services to the container.
+builder.Services.AddTransient<IPersonalAccount, PersonalAccountService>();
+builder.Services.AddScoped<DataManager>();
 builder.Services.AddControllersWithViews();
-
 var app = builder.Build();
-
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {

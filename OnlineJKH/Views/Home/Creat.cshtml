@@ -1,0 +1,14 @@
+﻿@model OnlineJKH.DAL.Entities.PersonalAccount
+@{
+    ViewData["Title"] = "Добавление";
+}
+@using(Html.BeginForm("Creat", "Home", FormMethod.Post))
+{
+    @Html.LabelFor(m => m.Number)
+    <br/>
+    @Html.TextBoxFor(m => m.Number)
+    <br/>
+    @Html.ValidationMessageFor(m => m.Number)
+    <br />
+    <input type="submit" value="Отправить" />
+}
