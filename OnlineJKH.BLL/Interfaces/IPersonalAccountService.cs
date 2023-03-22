@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace OnlineJKH.BLL.Interfaces
 {
-    public interface IPersonalAccount
+    public interface IPersonalAccountService
     {
         IEnumerable<PersonalAccount> GetPersonalAccounts();
-        void Delete(int? id);
-        void Creat(PersonalAccount personal);
-        PersonalAccount UpdateId(int? id);
+        void Delete(int id);
+        void Create(PersonalAccount personal);
+        PersonalAccount Get(int id);
         void Update(PersonalAccount personal);
     }
 }

@@ -9,11 +9,11 @@ namespace OnlineJKH.BLL
 {
     public class DataManager
     {
-        private IPersonalAccount _personalAccount;
-        public DataManager(IPersonalAccount personalAccount)
+        private IPersonalAccountService _personalAccount;
+        public DataManager(IPersonalAccountService personalAccount)
         {
             _personalAccount = personalAccount;
         }
-        public IPersonalAccount PersonalAccount { get { return _personalAccount; } }
+        public IPersonalAccountService PersonalAccount { get { return _personalAccount; } }
     }
 }
