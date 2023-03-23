@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OnlineJKH.BLL;
 using OnlineJKH.DAL.Entities;
+using OnlineJKH.Models.EditModel;
 
 namespace OnlineJKH.Controllers
 {
