@@ -1,0 +1,14 @@
+﻿@model OnlineJKH.DAL.Entities.PersonalAccount
+@{
+    ViewData["Title"] = "Добавление";
+}
+@using(Html.BeginForm("Create", "PersonalAccount", FormMethod.Post))
+{
+    @Html.LabelFor(m => m.Number)
+    <br/>
+    @Html.TextBoxFor(m => m.Number)
+    <br/>
+    @Html.ValidationMessageFor(m => m.Number)
+    <br />
+    <input type="submit" value="Отправить" />   <a asp-action="Index" asp-controller="PersonalAccount">Список</a>
+}
