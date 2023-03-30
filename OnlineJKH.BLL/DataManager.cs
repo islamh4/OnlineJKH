@@ -10,10 +10,13 @@ namespace OnlineJKH.BLL
     public class DataManager
     {
         private IPersonalAccountService _personalAccount;
-        public DataManager(IPersonalAccountService personalAccount)
+        private IMeterReadingService _meterReading;
+        public DataManager(IPersonalAccountService personalAccount, IMeterReadingService meterReading)
         {
             _personalAccount = personalAccount;
+            _meterReading = meterReading;
         }
         public IPersonalAccountService PersonalAccount { get { return _personalAccount; } }
+        public IMeterReadingService MeterReading { get {  return _meterReading; } }
     }
 }
