@@ -40,8 +40,6 @@ namespace OnlineJKH.BLL.Service
 
         public void Delete(int id)
         {
-            if (id == null)
-                throw new Exception("Id номер не инициализован!");
             var metRead = db.meterReadings.FirstOrDefault(m => m.Id == id);
             if (metRead == null)
                 throw new Exception("Объект не найден!");
@@ -51,8 +49,6 @@ namespace OnlineJKH.BLL.Service
 
         public MeterReading Get(int id)
         {
-            if (id == null)
-                throw new Exception("Id номер не инициализован!");
             return db.meterReadings.FirstOrDefault(m => m.Id == id);
         }
 
