@@ -49,9 +49,13 @@ namespace OnlineJKH.BLL.Service
 
         public MeterReading Get(int id)
         {
-            return db.meterReadings.FirstOrDefault(m => m.Id == id);
+            var metRead = db.meterReadings.FirstOrDefault(m => m.Id == id);
+            if (metRead == null)
+            {
+                throw new Exception("Объект не найден!");
+            }
+            return metRead;
         }
-
         public SelectList GetSelectList(IEnumerable<PersonalAccount> personalAccount)
         {
             return new SelectList(personalAccount.ToList(), "Id", "Number");
