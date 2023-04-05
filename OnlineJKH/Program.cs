@@ -9,6 +9,7 @@ string connection = builder.Configuration.GetConnectionString("DefaultConnection
 builder.Services.AddDbContext<EFDBContext>(options => options.UseSqlServer(connection));
 // Add services to the container.
 builder.Services.AddTransient<IPersonalAccountService, PersonalAccountService>();
+builder.Services.AddTransient<IMeterReadingService, MeterReadingService>();
 builder.Services.AddScoped<DataManager>();
 builder.Services.AddControllersWithViews();
 var app = builder.Build();

@@ -9,7 +9,11 @@
         <tr><td>Лицевой счёт</td></tr>
         @foreach (var item in Model)
         {
-            <tr><td>@item.Number</td><td><a asp-action="Edit" asp-controller="PersonalAccount" asp-route-id="@item.Id">Изменить</a></td><td><a asp-action="Delete" asp-controller="PersonalAccount" asp- asp-route-id="@item.Id">Удалить</a></td></tr>
+            <tr>
+                <td>@item.Number</td>
+                <td><a asp-action="Edit" asp-controller="PersonalAccount" asp-route-id="@item.Id">Изменить</a></td>
+                <td><a asp-action="Delete" asp-controller="PersonalAccount" asp-route-id="@item.Id">Удалить</a></td>
+            </tr>
         }
     </table>
 }

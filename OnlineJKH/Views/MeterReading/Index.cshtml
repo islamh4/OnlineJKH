@@ -1,0 +1,23 @@
+﻿@model IEnumerable<OnlineJKH.DAL.Entities.MeterReading>
+@{
+    ViewData["Title"] = "Список";
+}
+@using (Html.BeginForm())
+{
+    <a asp-action="Create" asp-controller="MeterReading">Добавить показания счетчика</a>
+    <table class="table">
+        <tr>
+        <td>Показания счетчика</td>
+        <td>Лицевой счёт</td>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.IndicationValue</td>
+                <td>@item?.PersonalAccount.Number</td>
+                <td><a asp-action="Edit" asp-controller="MeterReading" asp-route-id="@item.Id">Изменить</a></td>
+                <td><a asp-action="Delete" asp-controller="MeterReading" asp-route-id="@item.Id">Удалить</a></td>
+            </tr>
+        }
+    </table>
+}

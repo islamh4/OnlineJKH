@@ -1,0 +1,20 @@
+﻿@model OnlineJKH.DAL.Entities.MeterReading
+@{
+    ViewData["Title"] = "Добавление";
+}
+@using (Html.BeginForm("Create", "MeterReading", FormMethod.Post))
+{
+    @Html.LabelFor(m => m.IndicationValue)
+    <br />
+    @Html.TextBoxFor(m => m.IndicationValue)
+    <br />
+    @Html.ValidationMessageFor(m => m.IndicationValue)
+    <br />
+    @Html.LabelFor(m => m.PersonalAccount.Number)
+    <br />
+    @Html.DropDownListFor(m => m.PersonalAccountId, ViewBag.PersAc as SelectList,"Выберите лицевой счёт")
+    <br />
+    @Html.ValidationMessageFor(m => m.PersonalAccount.Number)
+    <br />
+    <input type="submit" value="Добавить" />    <a asp-action="Index" asp-controller="PersonalAccount">Список</a>
+}

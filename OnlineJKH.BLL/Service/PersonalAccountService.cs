@@ -39,8 +39,6 @@ namespace OnlineJKH.BLL.Service
 
         public void Delete(int id)
         {
-            if (id == null)
-                throw new Exception("Id номер не инициализован!");
             var persAc = db.personalAccounts.FirstOrDefault(m => m.Id == id);
             if (persAc == null)
                 throw new Exception("Объект не найден!");
@@ -50,9 +48,12 @@ namespace OnlineJKH.BLL.Service
 
         public PersonalAccount Get(int id)
         {
-            if (id == null)
-                throw new Exception("Id номер не инициализован!");
-            return db.personalAccounts.FirstOrDefault(m => m.Id == id);
+            var persAc = db.personalAccounts.FirstOrDefault(m => m.Id == id);
+            if (persAc == null)
+            {
+                throw new Exception("Объект не найден!");
+            }
+            return persAc;
         }
     }
 }
