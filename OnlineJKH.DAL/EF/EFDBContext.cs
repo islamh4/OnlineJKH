@@ -12,6 +12,7 @@ namespace OnlineJKH.DAL.EF
     {
         public DbSet<PersonalAccount> personalAccounts { get; set; }
         public DbSet<MeterReading> meterReadings { get; set; }
+        public DbSet<Receipt> receipts { get; set; }
         public EFDBContext(DbContextOptions<EFDBContext> options) : base(options)
         {
             Database.EnsureCreated();

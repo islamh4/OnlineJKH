@@ -1,0 +1,20 @@
+﻿@model OnlineJKH.DAL.Entities.Receipt
+@{
+    ViewData["Title"] = "Изменение";
+}
+@using (Html.BeginForm("Edit", "Receipt", FormMethod.Post))
+{
+    @Html.LabelFor(m => m.PaymentAmount)
+    <br />
+    @Html.TextBoxFor(m => m.PaymentAmount)
+    <br />
+    @Html.ValidationMessageFor(m => m.PaymentAmount)
+    <br />
+    @Html.LabelFor(m => m.MeterReading.IndicationValue)
+    <br />
+    @Html.DropDownListFor(m => m.MeterReadingId, ViewBag.MetRead as SelectList, "Выберите лицевой счёт")
+    <br />
+    @Html.ValidationMessageFor(m => m.MeterReading.IndicationValue)
+    <br />
+    <input type="submit" value="Изменить" />    <a asp-action="Index" asp-controller="Receipt">Список</a>
+}

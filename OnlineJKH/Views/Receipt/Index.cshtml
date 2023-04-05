@@ -1,0 +1,23 @@
+﻿@model IEnumerable<OnlineJKH.DAL.Entities.Receipt>
+@{
+    ViewData["Title"] = "Квитанция";
+}
+@using (Html.BeginForm())
+{
+    <a asp-action="Create" asp-controller="Receipt">Добавить квитанцию</a>
+    <table class="table">
+        <tr>
+            <td>Сумма для оплаты</td>
+            <td>показания счетчика</td>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.PaymentAmount</td>
+                <td>@item?.MeterReading.IndicationValue</td>
+                <td><a asp-action="Edit" asp-controller="Receipt" asp-route-id="@item.Id">Изменить</a></td>
+                <td><a asp-action="Delete" asp-controller="Receipt" asp-route-id="@item.Id">Удалить</a></td>
+            </tr>
+        }
+    </table>
+}

@@ -11,50 +11,50 @@ using System.Web.Mvc;
 
 namespace OnlineJKH.BLL.Service
 {
-    public class MeterReadingService : IMeterReadingService
+    public class ReceiptService : IReceiptService
     {
         EFDBContext db;
-        public MeterReadingService(EFDBContext _db)
+        public ReceiptService(EFDBContext _db)
         {
             db = _db;
         }
-        public void Create(MeterReading meter)
+        public void Create(Receipt receipt)
         {
-            if (meter == null)
+            if (receipt == null)
                 throw new Exception("Данные не найдены!");
-            db.meterReadings.Add(meter);
+            db.receipts.Add(receipt);
             db.SaveChanges();
         }
 
-        public IEnumerable<MeterReading> GetMeterReading()
+        public IEnumerable<Receipt> GetReceipt()
         {
-            return db.meterReadings.Include(m => m.PersonalAccount);
+            return db.receipts.Include(m => m.MeterReading);
         }
-        public void Update(MeterReading meter)
+        public void Update(Receipt receipt)
         {
-            if (meter == null)
+            if (receipt == null)
                 throw new Exception("Данные не найдены!");
-            db.Entry(meter).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            db.Entry(receipt).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             db.SaveChanges();
         }
 
         public void Delete(int id)
         {
-            var metRead = db.meterReadings.FirstOrDefault(m => m.Id == id);
-            if (metRead == null)
+            var receipt = db.receipts.FirstOrDefault(m => m.Id == id);
+            if (receipt == null)
                 throw new Exception("Объект не найден!");
-            db.Entry(metRead).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
+            db.Entry(receipt).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
             db.SaveChanges();
         }
 
-        public MeterReading Get(int id)
+        public Receipt Get(int id)
         {
-            var metRead = db.meterReadings.FirstOrDefault(m => m.Id == id);
-            if (metRead == null)
+            var receipt = db.receipts.FirstOrDefault(m => m.Id == id);
+            if (receipt == null)
             {
                 throw new Exception("Объект не найден!");
             }
-            return metRead;
+            return receipt;
         }
     }
 }

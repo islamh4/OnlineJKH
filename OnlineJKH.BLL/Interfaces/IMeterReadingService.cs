@@ -15,6 +15,6 @@ namespace OnlineJKH.BLL.Interfaces
         void Create(MeterReading meter);
         MeterReading Get(int id);
         void Update(MeterReading meter);
-        SelectList GetSelectList(IEnumerable<PersonalAccount> personalAccount);
+       // SelectList GetSelectList(IEnumerable<PersonalAccount> personalAccount);
     }
 }
