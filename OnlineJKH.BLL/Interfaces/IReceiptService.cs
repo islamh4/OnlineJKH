@@ -15,6 +15,5 @@ namespace OnlineJKH.BLL.Interfaces
         void Create(Receipt meter);
         Receipt Get(int id);
         void Update(Receipt meter);
-      //  SelectList GetSelectList(IEnumerable<MeterReading> meterReadings);
     }
 }

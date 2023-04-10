@@ -22,13 +22,13 @@ namespace OnlineJKH.BLL.Service
         {
             if (meter == null)
                 throw new Exception("Данные не найдены!");
-            db.meterReadings.Add(meter);
+            db.MeterReadings.Add(meter);
             db.SaveChanges();
         }
 
         public IEnumerable<MeterReading> GetMeterReading()
         {
-            return db.meterReadings.Include(m => m.PersonalAccount);
+            return db.MeterReadings.Include(m => m.PersonalAccount);
         }
         public void Update(MeterReading meter)
         {
@@ -40,7 +40,7 @@ namespace OnlineJKH.BLL.Service
 
         public void Delete(int id)
         {
-            var metRead = db.meterReadings.FirstOrDefault(m => m.Id == id);
+            var metRead = db.MeterReadings.FirstOrDefault(m => m.Id == id);
             if (metRead == null)
                 throw new Exception("Объект не найден!");
             db.Entry(metRead).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
@@ -49,7 +49,7 @@ namespace OnlineJKH.BLL.Service
 
         public MeterReading Get(int id)
         {
-            var metRead = db.meterReadings.FirstOrDefault(m => m.Id == id);
+            var metRead = db.MeterReadings.FirstOrDefault(m => m.Id == id);
             if (metRead == null)
             {
                 throw new Exception("Объект не найден!");

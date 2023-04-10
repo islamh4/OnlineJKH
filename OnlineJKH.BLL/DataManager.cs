@@ -9,17 +9,17 @@ namespace OnlineJKH.BLL
 {
     public class DataManager
     {
-        private IPersonalAccountService _personalAccount;
-        private IMeterReadingService _meterReading;
-        private IReceiptService _receipt;
-        public DataManager(IPersonalAccountService personalAccount, IMeterReadingService meterReading, IReceiptService receipt)
+        private IPersonalAccountService _personalAccountService;
+        private IMeterReadingService _meterReadingService;
+        private IReceiptService _receiptService;
+        public DataManager(IPersonalAccountService personalAccountService, IMeterReadingService meterReadingService, IReceiptService receiptService)
         {
-            _personalAccount = personalAccount;
-            _meterReading = meterReading;
-            _receipt = receipt;
+            _personalAccountService = personalAccountService;
+            _meterReadingService = meterReadingService;
+            _receiptService = receiptService;
         }
-        public IPersonalAccountService PersonalAccount { get { return _personalAccount; } }
-        public IMeterReadingService MeterReading { get {  return _meterReading; } }
-        public IReceiptService Receipt { get {  return _receipt; } }
+        public IPersonalAccountService PersonalAccount { get { return _personalAccountService; } }
+        public IMeterReadingService MeterReading { get {  return _meterReadingService; } }
+        public IReceiptService Receipt { get {  return _receiptService; } }
     }
 }

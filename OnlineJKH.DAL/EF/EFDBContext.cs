@@ -10,9 +10,9 @@ namespace OnlineJKH.DAL.EF
 {
     public class EFDBContext : DbContext
     {
-        public DbSet<PersonalAccount> personalAccounts { get; set; }
-        public DbSet<MeterReading> meterReadings { get; set; }
-        public DbSet<Receipt> receipts { get; set; }
+        public DbSet<PersonalAccount> PersonalAccounts { get; set; }
+        public DbSet<MeterReading> MeterReadings { get; set; }
+        public DbSet<Receipt> Receipts { get; set; }
         public EFDBContext(DbContextOptions<EFDBContext> options) : base(options)
         {
             Database.EnsureCreated();

@@ -22,13 +22,13 @@ namespace OnlineJKH.BLL.Service
         {
             if (receipt == null)
                 throw new Exception("Данные не найдены!");
-            db.receipts.Add(receipt);
+            db.Receipts.Add(receipt);
             db.SaveChanges();
         }
 
         public IEnumerable<Receipt> GetReceipt()
         {
-            return db.receipts.Include(m => m.MeterReading);
+            return db.Receipts.Include(m => m.MeterReading);
         }
         public void Update(Receipt receipt)
         {
@@ -40,7 +40,7 @@ namespace OnlineJKH.BLL.Service
 
         public void Delete(int id)
         {
-            var receipt = db.receipts.FirstOrDefault(m => m.Id == id);
+            var receipt = db.Receipts.FirstOrDefault(m => m.Id == id);
             if (receipt == null)
                 throw new Exception("Объект не найден!");
             db.Entry(receipt).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
@@ -49,7 +49,7 @@ namespace OnlineJKH.BLL.Service
 
         public Receipt Get(int id)
         {
-            var receipt = db.receipts.FirstOrDefault(m => m.Id == id);
+            var receipt = db.Receipts.FirstOrDefault(m => m.Id == id);
             if (receipt == null)
             {
                 throw new Exception("Объект не найден!");
