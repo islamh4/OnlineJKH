@@ -8,12 +8,12 @@ using System.Web.Mvc;
 
 namespace OnlineJKH.BLL.Interfaces
 {
-    public interface IMeterReadingService
+    public interface IReceiptService
     {
-        IEnumerable<MeterReading> GetMeterReading();
+        IEnumerable<Receipt> GetReceipt();
         void Delete(int id);
-        void Create(MeterReading meter);
-        MeterReading Get(int id);
-        void Update(MeterReading meter);
+        void Create(Receipt meter);
+        Receipt Get(int id);
+        void Update(Receipt meter);
     }
 }

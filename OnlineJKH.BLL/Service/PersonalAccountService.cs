@@ -21,13 +21,13 @@ namespace OnlineJKH.BLL.Service
         {
             if (personal == null)
                 throw new Exception("Данные не найдены!");
-            db.personalAccounts.Add(personal);
+            db.PersonalAccounts.Add(personal);
             db.SaveChanges();
         }
 
         public IEnumerable<PersonalAccount> GetPersonalAccounts()
         {
-            return db.personalAccounts;
+            return db.PersonalAccounts;
         }
         public void Update(PersonalAccount personal)
         {
@@ -39,7 +39,7 @@ namespace OnlineJKH.BLL.Service
 
         public void Delete(int id)
         {
-            var persAc = db.personalAccounts.FirstOrDefault(m => m.Id == id);
+            var persAc = db.PersonalAccounts.FirstOrDefault(m => m.Id == id);
             if (persAc == null)
                 throw new Exception("Объект не найден!");
             db.Entry(persAc).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
@@ -48,7 +48,7 @@ namespace OnlineJKH.BLL.Service
 
         public PersonalAccount Get(int id)
         {
-            var persAc = db.personalAccounts.FirstOrDefault(m => m.Id == id);
+            var persAc = db.PersonalAccounts.FirstOrDefault(m => m.Id == id);
             if (persAc == null)
             {
                 throw new Exception("Объект не найден!");

@@ -10,6 +10,7 @@ builder.Services.AddDbContext<EFDBContext>(options => options.UseSqlServer(conne
 // Add services to the container.
 builder.Services.AddTransient<IPersonalAccountService, PersonalAccountService>();
 builder.Services.AddTransient<IMeterReadingService, MeterReadingService>();
+builder.Services.AddTransient<IReceiptService, ReceiptService>();
 builder.Services.AddScoped<DataManager>();
 builder.Services.AddControllersWithViews();
 var app = builder.Build();
