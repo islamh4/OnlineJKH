@@ -39,9 +39,7 @@ namespace OnlineJKH.BLL.Service
 
         public void Delete(int id)
         {
-            var persAc = db.PersonalAccounts.FirstOrDefault(m => m.Id == id);
-            if (persAc == null)
-                throw new Exception("Объект не найден!");
+            var persAc = Get(id);
             db.Entry(persAc).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
             db.SaveChanges();
         }

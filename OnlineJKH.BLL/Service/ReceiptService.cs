@@ -40,9 +40,7 @@ namespace OnlineJKH.BLL.Service
 
         public void Delete(int id)
         {
-            var receipt = db.Receipts.FirstOrDefault(m => m.Id == id);
-            if (receipt == null)
-                throw new Exception("Объект не найден!");
+            var receipt = Get(id);
             db.Entry(receipt).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
             db.SaveChanges();
         }

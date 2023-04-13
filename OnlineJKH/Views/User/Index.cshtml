@@ -1,0 +1,33 @@
+﻿@model IEnumerable<OnlineJKH.DAL.Entities.User>
+@{
+    ViewData["Title"] = "Пользователь";
+}
+@using (Html.BeginForm())
+{
+    <a asp-action="Create" asp-controller="User">Добавить пользователь</a>
+    <table class="table">
+        <tr>
+            <td>Фамилия</td>
+            <td>Имя</td>
+            <td>Отчество</td>
+            <td>Адрес</td>
+            <td>СНИЛС</td>
+            <td>Данные паспорта</td>
+            <td>Админ</td>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Surname</td>
+                <td>@item.Name</td>
+                <td>@item.Paronymic</td>
+                <td>@item.Address</td>
+                <td>@item.Snils</td>
+                <td>@item.PassportInfo</td>
+                <td>@item.IsAdmin</td>
+                <td><a asp-action="Edit" asp-controller="User" asp-route-id="@item.Id">Изменить</a></td>
+                <td><a asp-action="Delete" asp-controller="User" asp-route-id="@item.Id">Удалить</a></td>
+            </tr>
+        }
+    </table>
+}

@@ -1,0 +1,49 @@
+﻿@model OnlineJKH.DAL.Entities.User
+@{
+    ViewData["Title"] = "Добавление";
+}
+@using (Html.BeginForm("Create", "User", FormMethod.Post))
+{
+    @Html.LabelFor(m => m.Surname)
+    <br />
+    @Html.TextBoxFor(m => m.Surname)
+    <br />
+    @Html.ValidationMessageFor(m => m.Surname)
+    <br />
+    @Html.LabelFor(m => m.Name)
+    <br />
+    @Html.TextBoxFor(m => m.Name)
+    <br />
+    @Html.ValidationMessageFor(m => m.Name)
+    <br />
+    @Html.LabelFor(m => m.Paronymic)
+    <br />
+    @Html.TextBoxFor(m => m.Paronymic)
+    <br />
+    @Html.ValidationMessageFor(m => m.Paronymic)
+    <br />
+    @Html.LabelFor(m => m.Address)
+    <br />
+    @Html.TextAreaFor(m => m.Address, 2,30,null)
+    <br />
+    @Html.ValidationMessageFor(m => m.Address)
+    <br />
+    @Html.LabelFor(m => m.Snils)
+    <br />
+    @Html.TextBoxFor(m => m.Snils)
+    <br />
+    @Html.ValidationMessageFor(m => m.Snils)
+    <br />
+    @Html.LabelFor(m => m.PassportInfo)
+    <br />
+    @Html.TextBoxFor(m => m.PassportInfo)
+    <br />
+    @Html.ValidationMessageFor(m => m.PassportInfo)
+    <br />
+    @Html.LabelFor(m => m.IsAdmin)
+    @Html.CheckBoxFor(m => m.IsAdmin)
+    <br />
+    @Html.ValidationMessageFor(m => m.IsAdmin)
+    <br />
+    <input type="submit" value="Добавить" />    <a asp-action="Index" asp-controller="User">Список</a>
+}

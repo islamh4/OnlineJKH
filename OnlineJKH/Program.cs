@@ -11,6 +11,7 @@ builder.Services.AddDbContext<EFDBContext>(options => options.UseSqlServer(conne
 builder.Services.AddTransient<IPersonalAccountService, PersonalAccountService>();
 builder.Services.AddTransient<IMeterReadingService, MeterReadingService>();
 builder.Services.AddTransient<IReceiptService, ReceiptService>();
+builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddScoped<DataManager>();
 builder.Services.AddControllersWithViews();
 var app = builder.Build();
