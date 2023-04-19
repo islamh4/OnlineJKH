@@ -26,7 +26,7 @@ namespace OnlineJKH.BLL.Service
             db.SaveChanges();
         }
 
-        public IEnumerable<MeterReading> GetMeterReading()
+        public IEnumerable<MeterReading> GetMeterReadings()
         {
             return db.MeterReadings.Include(m => m.PersonalAccount);
         }

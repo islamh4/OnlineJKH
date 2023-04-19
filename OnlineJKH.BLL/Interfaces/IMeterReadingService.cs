@@ -10,7 +10,7 @@ namespace OnlineJKH.BLL.Interfaces
 {
     public interface IMeterReadingService
     {
-        IEnumerable<MeterReading> GetMeterReading();
+        IEnumerable<MeterReading> GetMeterReadings();
         void Delete(int id);
         void Create(MeterReading meter);
         MeterReading Get(int id);

@@ -9,7 +9,7 @@ namespace OnlineJKH.BLL.Interfaces
 {
     public interface IUserService
     {
-        IEnumerable<User> GetUser();
+        IEnumerable<User> GetUsers();
         void Delete(int id);
         void Create(User user);
         User Get(int id);

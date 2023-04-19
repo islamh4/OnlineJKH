@@ -7,20 +7,20 @@ namespace OnlineJKH.Controllers
 {
     public class MeterReadingController : Controller
     {
-        private DataManager dataManager;
-        public MeterReadingController(DataManager _dataManager)
+        private DataManager _dataManager;
+        public MeterReadingController(DataManager dataManager)
         {
-            dataManager = _dataManager;
+            _dataManager = dataManager;
         }
 
         public IActionResult Index()
         {
-            return View(dataManager.MeterReading.GetMeterReading());
+            return View(_dataManager.MeterReadingService.GetMeterReadings());
         }
         [HttpGet]
         public IActionResult Create()
         {
-            ViewBag.PersAc = new SelectList(dataManager.PersonalAccount.GetPersonalAccounts().ToList(), "Id", "Number");
+            ViewBag.PersAc = new SelectList(_dataManager.PersonalAccountService.GetPersonalAccounts().ToList(), "Id", "Number");
             return View();
         }
         [HttpPost]
@@ -28,17 +28,17 @@ namespace OnlineJKH.Controllers
         {
             if (ModelState.IsValid)
             {
-                dataManager.MeterReading.Create(meter);
+                _dataManager.MeterReadingService.Create(meter);
                 return RedirectToAction("Index");
             }
-            ViewBag.PersAc = new SelectList(dataManager.PersonalAccount.GetPersonalAccounts().ToList(), "Id", "Number");
+            ViewBag.PersAc = new SelectList(_dataManager.PersonalAccountService.GetPersonalAccounts().ToList(), "Id", "Number");
             return View(meter);
         }
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            ViewBag.PersAc = new SelectList(dataManager.PersonalAccount.GetPersonalAccounts().ToList(), "Id", "Number");
-            var personal = dataManager.MeterReading.Get(id);
+            ViewBag.PersAc = new SelectList(_dataManager.PersonalAccountService.GetPersonalAccounts().ToList(), "Id", "Number");
+            var personal = _dataManager.MeterReadingService.Get(id);
             return View(personal);
         }
         [HttpPost]
@@ -46,15 +46,15 @@ namespace OnlineJKH.Controllers
         {
             if (ModelState.IsValid)
             {
-                dataManager.MeterReading.Update(meter);
+                _dataManager.MeterReadingService.Update(meter);
                 return RedirectToAction("Index");
             }
-            ViewBag.PersAc = new SelectList(dataManager.PersonalAccount.GetPersonalAccounts().ToList(), "Id", "Number");
+            ViewBag.PersAc = new SelectList(_dataManager.PersonalAccountService.GetPersonalAccounts().ToList(), "Id", "Number");
             return View(meter);
         }
         public IActionResult Delete(int id)
         {
-            dataManager.MeterReading.Delete(id);
+            _dataManager.MeterReadingService.Delete(id);
             return RedirectToAction("Index");
         }
     }

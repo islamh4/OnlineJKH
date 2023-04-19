@@ -26,7 +26,7 @@ namespace OnlineJKH.BLL.Service
             db.SaveChanges();
         }
 
-        public IEnumerable<Receipt> GetReceipt()
+        public IEnumerable<Receipt> GetReceipts()
         {
             return db.Receipts.Include(m => m.MeterReading);
         }

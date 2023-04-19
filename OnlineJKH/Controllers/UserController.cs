@@ -6,15 +6,15 @@ namespace OnlineJKH.Controllers
 {
     public class UserController : Controller
     {
-        private DataManager dataManager;
-        public UserController(DataManager _dataManager)
+        private DataManager _dataManager;
+        public UserController(DataManager dataManager)
         {
-            dataManager = _dataManager;
+            _dataManager = dataManager;
         }
 
         public IActionResult Index()
         {
-            return View(dataManager.User.GetUser());
+            return View(_dataManager.UserService.GetUsers());
         }
         [HttpGet]
         public IActionResult Create()
@@ -26,7 +26,7 @@ namespace OnlineJKH.Controllers
         {
             if (ModelState.IsValid)
             {
-                dataManager.User.Create(user);
+                _dataManager.UserService.Create(user);
                 return RedirectToAction("Index");
             }
             return View(user);
@@ -34,7 +34,7 @@ namespace OnlineJKH.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            var user = dataManager.User.Get(id);
+            var user = _dataManager.UserService.Get(id);
             return View(user);
         }
         [HttpPost]
@@ -42,14 +42,14 @@ namespace OnlineJKH.Controllers
         {
             if (ModelState.IsValid)
             {
-                dataManager.User.Update(user);
+                _dataManager.UserService.Update(user);
                 return RedirectToAction("Index");
             }
             return View(user);
         }
         public IActionResult Delete(int id)
         {
-            dataManager.User.Delete(id);
+            _dataManager.UserService.Delete(id);
             return RedirectToAction("Index");
         }
     }

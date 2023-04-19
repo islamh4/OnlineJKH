@@ -10,7 +10,7 @@ namespace OnlineJKH.BLL.Interfaces
 {
     public interface IReceiptService
     {
-        IEnumerable<Receipt> GetReceipt();
+        IEnumerable<Receipt> GetReceipts();
         void Delete(int id);
         void Create(Receipt meter);
         Receipt Get(int id);

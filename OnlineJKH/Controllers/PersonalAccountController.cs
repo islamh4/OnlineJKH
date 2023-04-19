@@ -7,15 +7,15 @@ namespace OnlineJKH.Controllers
 {
     public class PersonalAccountController : Controller
     {
-        private DataManager dataManager;
-        public PersonalAccountController(DataManager _dataManager)
+        private DataManager _dataManager;
+        public PersonalAccountController(DataManager dataManager)
         {
-            dataManager = _dataManager;
+            _dataManager = dataManager;
         }
 
         public IActionResult Index()
         {
-            return View(dataManager.PersonalAccount.GetPersonalAccounts());
+            return View(_dataManager.PersonalAccountService.GetPersonalAccounts());
         }
         [HttpGet]
         public IActionResult Create()
@@ -27,7 +27,7 @@ namespace OnlineJKH.Controllers
         {
             if (ModelState.IsValid)
             {
-                dataManager.PersonalAccount.Create(personal);
+                _dataManager.PersonalAccountService.Create(personal);
                 return RedirectToAction("Index");
             }
             return View(personal);
@@ -35,7 +35,7 @@ namespace OnlineJKH.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            var personal = dataManager.PersonalAccount.Get(id);
+            var personal = _dataManager.PersonalAccountService.Get(id);
             return View(personal);
         }
         [HttpPost]
@@ -43,14 +43,14 @@ namespace OnlineJKH.Controllers
         {
             if (ModelState.IsValid)
             {
-                dataManager.PersonalAccount.Update(personal);
+                _dataManager.PersonalAccountService.Update(personal);
                 return RedirectToAction("Index");
             }
             return View(personal);
         }
         public IActionResult Delete(int id)
         {
-            dataManager.PersonalAccount.Delete(id);
+            _dataManager.PersonalAccountService.Delete(id);
             return RedirectToAction("Index");
         }
     }

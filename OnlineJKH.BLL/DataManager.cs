@@ -20,9 +20,9 @@ namespace OnlineJKH.BLL
             _receiptService = receiptService;
             _userService = userService;
         }
-        public IPersonalAccountService PersonalAccount { get { return _personalAccountService; } }
-        public IMeterReadingService MeterReading { get {  return _meterReadingService; } }
-        public IReceiptService Receipt { get {  return _receiptService; } }
-        public IUserService User { get { return _userService; } }
+        public IPersonalAccountService PersonalAccountService { get { return _personalAccountService; } }
+        public IMeterReadingService MeterReadingService { get {  return _meterReadingService; } }
+        public IReceiptService ReceiptService { get {  return _receiptService; } }
+        public IUserService UserService { get { return _userService; } }
     }
 }

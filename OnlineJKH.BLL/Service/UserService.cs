@@ -24,7 +24,7 @@ namespace OnlineJKH.BLL.Service
             db.SaveChanges();
         }
 
-        public IEnumerable<User> GetUser()
+        public IEnumerable<User> GetUsers()
         {
             return db.Users;
         }
