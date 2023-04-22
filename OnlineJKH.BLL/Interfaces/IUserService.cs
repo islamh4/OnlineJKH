@@ -4,16 +4,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web.Mvc;
 
 namespace OnlineJKH.BLL.Interfaces
 {
-    public interface IReceiptService
+    public interface IUserService
     {
-        IEnumerable<Receipt> GetReceipts();
+        IEnumerable<User> GetUsers();
         void Delete(int id);
-        void Create(Receipt meter);
-        Receipt Get(int id);
-        void Update(Receipt meter);
+        void Create(User user);
+        User Get(int id);
+        void Update(User user);
     }
 }

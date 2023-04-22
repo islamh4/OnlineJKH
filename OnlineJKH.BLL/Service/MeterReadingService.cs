@@ -26,7 +26,7 @@ namespace OnlineJKH.BLL.Service
             db.SaveChanges();
         }
 
-        public IEnumerable<MeterReading> GetMeterReading()
+        public IEnumerable<MeterReading> GetMeterReadings()
         {
             return db.MeterReadings.Include(m => m.PersonalAccount);
         }
@@ -40,9 +40,7 @@ namespace OnlineJKH.BLL.Service
 
         public void Delete(int id)
         {
-            var metRead = db.MeterReadings.FirstOrDefault(m => m.Id == id);
-            if (metRead == null)
-                throw new Exception("Объект не найден!");
+            var metRead = Get(id);
             db.Entry(metRead).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
             db.SaveChanges();
         }

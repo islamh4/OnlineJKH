@@ -1,21 +1,20 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OnlineJKH.BLL;
 using OnlineJKH.DAL.Entities;
-using OnlineJKH.Models.EditModel;
 
 namespace OnlineJKH.Controllers
 {
-    public class PersonalAccountController : Controller
+    public class UserController : Controller
     {
         private DataManager _dataManager;
-        public PersonalAccountController(DataManager dataManager)
+        public UserController(DataManager dataManager)
         {
             _dataManager = dataManager;
         }
 
         public IActionResult Index()
         {
-            return View(_dataManager.PersonalAccountService.GetPersonalAccounts());
+            return View(_dataManager.UserService.GetUsers());
         }
         [HttpGet]
         public IActionResult Create()
@@ -23,34 +22,34 @@ namespace OnlineJKH.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Create(PersonalAccount personal)
+        public IActionResult Create(User user)
         {
             if (ModelState.IsValid)
             {
-                _dataManager.PersonalAccountService.Create(personal);
+                _dataManager.UserService.Create(user);
                 return RedirectToAction("Index");
             }
-            return View(personal);
+            return View(user);
         }
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            var personal = _dataManager.PersonalAccountService.Get(id);
-            return View(personal);
+            var user = _dataManager.UserService.Get(id);
+            return View(user);
         }
         [HttpPost]
-        public IActionResult Edit(PersonalAccount personal)
+        public IActionResult Edit(User user)
         {
             if (ModelState.IsValid)
             {
-                _dataManager.PersonalAccountService.Update(personal);
+                _dataManager.UserService.Update(user);
                 return RedirectToAction("Index");
             }
-            return View(personal);
+            return View(user);
         }
         public IActionResult Delete(int id)
         {
-            _dataManager.PersonalAccountService.Delete(id);
+            _dataManager.UserService.Delete(id);
             return RedirectToAction("Index");
         }
     }

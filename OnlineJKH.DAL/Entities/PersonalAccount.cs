@@ -13,7 +13,7 @@ namespace OnlineJKH.DAL.Entities
         public int Id { get; set; }
         [Required(ErrorMessage = "Лицевой счёт обязательно!")]
         [Display(Name = "Лицевой счёт")]
-        [RegularExpression(@"\d{10}", ErrorMessage = "Ошибка ввода!")]
+        [RegularExpression(@"\d{10}", ErrorMessage = "Длина номера составляет 10 символов, пожалуйста, введите корректно.")]
         public string Number { get; set; }
     }
 }
