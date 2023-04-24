@@ -38,8 +38,7 @@ namespace OnlineJKH.Controllers
         public IActionResult Edit(int id)
         {
             ViewBag.PersAc = new SelectList(_dataManager.PersonalAccountService.GetPersonalAccounts().ToList(), "Id", "Number");
-            var personal = _dataManager.MeterReadingService.Get(id);
-            return View(personal);
+            return View(_dataManager.MeterReadingService.Get(id));
         }
         [HttpPost]
         public IActionResult Edit(MeterReading meter)

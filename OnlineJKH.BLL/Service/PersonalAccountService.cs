@@ -1,4 +1,5 @@
-﻿using OnlineJKH.BLL.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using OnlineJKH.BLL.Interfaces;
 using OnlineJKH.DAL.EF;
 using OnlineJKH.DAL.Entities;
 using System;
@@ -27,7 +28,7 @@ namespace OnlineJKH.BLL.Service
 
         public IEnumerable<PersonalAccount> GetPersonalAccounts()
         {
-            return db.PersonalAccounts;
+            return db.PersonalAccounts.Include(m => m.User);
         }
         public void Update(PersonalAccount personal)
         {
