@@ -21,20 +21,12 @@ namespace OnlineJKH.Controllers
         }
         public IEnumerable<UserViewModel> UserViews(IEnumerable<User> user)
         {
-            List<UserViewModel> users = new List<UserViewModel>();
-            foreach (var item in _dataManager.UserService.GetUsers().ToList())
-            {
-                UserViewModel us = new UserViewModel();
-                us.Id = item.Id;
-                us.FIO = (item.Surname + " " + item.Name + " " + item.Patronymic).ToString();
-                users.Add(us);
-            }
-            return users;
+            return _dataManager.UserService.GetUsers().Select(m => new UserViewModel { Id = m.Id , FIO = (m.Surname+" "+m.Name+" "+m.Patronymic).ToString()}).ToList();
         }
         [HttpGet]
         public IActionResult Create()
         {
-            ViewBag.User = new SelectList(UserViews(_dataManager.UserService.GetUsers().ToList()), "Id", "FIO");
+            ViewBag.User = new SelectList(UserViews(_dataManager.UserService.GetUsers()), "Id", "FIO");
             return View();
         }
         [HttpPost]
@@ -45,13 +37,13 @@ namespace OnlineJKH.Controllers
                 _dataManager.PersonalAccountService.Create(personal);
                 return RedirectToAction("Index");
             }
-            ViewBag.User = new SelectList(UserViews(_dataManager.UserService.GetUsers().ToList()), "Id", "FIO");
+            ViewBag.User = new SelectList(UserViews(_dataManager.UserService.GetUsers()), "Id", "FIO");
             return View(personal);
         }
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            ViewBag.User = new SelectList(UserViews(_dataManager.UserService.GetUsers().ToList()), "Id", "FIO");
+            ViewBag.User = new SelectList(UserViews(_dataManager.UserService.GetUsers()), "Id", "FIO");
             return View(_dataManager.PersonalAccountService.Get(id));
         }
         [HttpPost]
@@ -62,7 +54,7 @@ namespace OnlineJKH.Controllers
                 _dataManager.PersonalAccountService.Update(personal);
                 return RedirectToAction("Index");
             }
-            ViewBag.User = new SelectList(UserViews(_dataManager.UserService.GetUsers().ToList()), "Id", "FIO");
+            ViewBag.User = new SelectList(UserViews(_dataManager.UserService.GetUsers()), "Id", "FIO");
             return View(personal);
         }
         public IActionResult Delete(int id)
