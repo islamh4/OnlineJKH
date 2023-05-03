@@ -30,7 +30,9 @@ namespace OnlineJKH.DAL.Entities
         [Display(Name = "Данные паспорта")]
         [StringLength(10, MinimumLength = 10, ErrorMessage = "Длина паспорта составляет 10 символов, пожалуйста, введите корректно.")]
         public string PassportInfo { get; set; }
-        [Display(Name = "Админ")]
-        public bool IsAdmin { get; set; }
+        public int RoleId { get; set; }
+        public virtual Role? Role { get; set; }
+        public int AccountId { get; set; }
+        public virtual Account? Account { get; set; }
     }
 }

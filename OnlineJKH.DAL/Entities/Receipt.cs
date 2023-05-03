@@ -14,6 +14,6 @@ namespace OnlineJKH.DAL.Entities
         [Display(Name = "Сумма для оплаты")]
         public int PaymentAmount { get; set; }
         public int MeterReadingId { get; set; }
-        public MeterReading? MeterReading { get; set; }
+        public virtual MeterReading? MeterReading { get; set; }
     }
 }

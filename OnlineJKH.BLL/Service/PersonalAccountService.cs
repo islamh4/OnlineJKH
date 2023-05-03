@@ -12,42 +12,42 @@ namespace OnlineJKH.BLL.Service
 {
     public class PersonalAccountService : IPersonalAccountService
     {
-        EFDBContext db;
-        public PersonalAccountService(EFDBContext _db)
+        EFDBContext _db;
+        public PersonalAccountService(EFDBContext db)
         {
-            db = _db;
+            _db = db;
         }
 
         public void Create(PersonalAccount personal)
         {
             if (personal == null)
                 throw new Exception("Данные не найдены!");
-            db.PersonalAccounts.Add(personal);
-            db.SaveChanges();
+            _db.PersonalAccounts.Add(personal);
+            _db.SaveChanges();
         }
 
         public IEnumerable<PersonalAccount> GetPersonalAccounts()
         {
-            return db.PersonalAccounts.Include(m => m.User);
+            return _db.PersonalAccounts.ToList();
         }
         public void Update(PersonalAccount personal)
         {
             if (personal == null)
                 throw new Exception("Данные не найдены!");
-            db.Entry(personal).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-            db.SaveChanges();
+            _db.Entry(personal).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            _db.SaveChanges();
         }
 
         public void Delete(int id)
         {
             var persAc = Get(id);
-            db.Entry(persAc).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
-            db.SaveChanges();
+            _db.Entry(persAc).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
+            _db.SaveChanges();
         }
 
         public PersonalAccount Get(int id)
         {
-            var persAc = db.PersonalAccounts.FirstOrDefault(m => m.Id == id);
+            var persAc = _db.PersonalAccounts.FirstOrDefault(m => m.Id == id);
             if (persAc == null)
             {
                 throw new Exception("Объект не найден!");

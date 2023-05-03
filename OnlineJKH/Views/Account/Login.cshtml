@@ -1,0 +1,21 @@
+﻿@model OnlineJKH.Models.ViewModel.AccountViewModel
+@{
+    Layout = "~/Views/Account/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Логин";
+}
+@using (Html.BeginForm("Login", "Account", FormMethod.Post))
+{
+    @Html.LabelFor(m => m.Login)
+    <br />
+    @Html.TextBoxFor(m => m.Login)
+    <br />
+    @Html.ValidationMessageFor(m => m.Login)
+    <br />
+    @Html.LabelFor(m => m.Password)
+    <br />
+    @Html.TextBoxFor(m => m.Password)
+    <br />
+    @Html.ValidationMessageFor(m => m.Password)
+    <br />
+    <input type="submit" value="Войти" />
+}
