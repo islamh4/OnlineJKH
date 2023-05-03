@@ -13,19 +13,16 @@ namespace OnlineJKH.BLL
         private IMeterReadingService _meterReadingService;
         private IReceiptService _receiptService;
         private IUserService _userService;
-        private IAccountService _accountService;
-        public DataManager(IPersonalAccountService personalAccountService, IMeterReadingService meterReadingService, IReceiptService receiptService, IUserService userService, IAccountService accountService)
+        public DataManager(IPersonalAccountService personalAccountService, IMeterReadingService meterReadingService, IReceiptService receiptService, IUserService userService)
         {
             _personalAccountService = personalAccountService;
             _meterReadingService = meterReadingService;
             _receiptService = receiptService;
             _userService = userService;
-            _accountService = accountService;
         }
         public IPersonalAccountService PersonalAccountService { get { return _personalAccountService; } }
         public IMeterReadingService MeterReadingService { get {  return _meterReadingService; } }
         public IReceiptService ReceiptService { get {  return _receiptService; } }
         public IUserService UserService { get { return _userService; } }
-        public IAccountService AccountService { get { return _accountService; } }
     }
 }

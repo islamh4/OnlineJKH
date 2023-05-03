@@ -40,23 +40,10 @@
     <br />
     @Html.ValidationMessageFor(m => m.PassportInfo)
     <br />
-    @Html.LabelFor(m => m.Role.Name)
-    <br/>
-    @Html.DropDownListFor(m => m.Role.Id, ViewBag.Role as SelectList,"Выберите роль пользователя!")
+    @Html.LabelFor(m => m.IsAdmin)
+    @Html.CheckBoxFor(m => m.IsAdmin)
     <br />
-    @Html.ValidationMessageFor(m => m.Role.Name)
-    <br />
-    @Html.LabelFor(m => m.Account.Login)
-    <br />
-    @Html.TextBoxFor(m => m.Account.Login)
-    <br />
-    @Html.ValidationMessageFor(m => m.Account.Login)
-    <br />
-    @Html.LabelFor(m => m.Account.Password)
-    <br />
-    @Html.TextBoxFor(m => m.Account.Password)
-    <br />
-    @Html.ValidationMessageFor(m => m.Account.Password)
+    @Html.ValidationMessageFor(m => m.IsAdmin)
     <br />
     <input type="submit" value="Добавить" />    <a asp-action="Index" asp-controller="User">Список</a>
 }

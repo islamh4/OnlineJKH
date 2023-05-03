@@ -17,6 +17,6 @@ namespace OnlineJKH.DAL.Entities
         [RegularExpression(@"\d{10}", ErrorMessage = "Длина номера составляет 10 символов, пожалуйста, введите корректно.")]
         public string Number { get; set; }
         public int UserId { get; set; }
-        public virtual User? User { get; set; }
+        public User? User { get; set; }
     }
 }

@@ -13,41 +13,41 @@ namespace OnlineJKH.BLL.Service
 {
     public class ReceiptService : IReceiptService
     {
-        EFDBContext _db;
-        public ReceiptService(EFDBContext db)
+        EFDBContext db;
+        public ReceiptService(EFDBContext _db)
         {
-            _db = db;
+            db = _db;
         }
         public void Create(Receipt receipt)
         {
             if (receipt == null)
                 throw new Exception("Данные не найдены!");
-            _db.Receipts.Add(receipt);
-            _db.SaveChanges();
+            db.Receipts.Add(receipt);
+            db.SaveChanges();
         }
 
         public IEnumerable<Receipt> GetReceipts()
         {
-            return _db.Receipts.ToList();
+            return db.Receipts.Include(m => m.MeterReading);
         }
         public void Update(Receipt receipt)
         {
             if (receipt == null)
                 throw new Exception("Данные не найдены!");
-            _db.Entry(receipt).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-            _db.SaveChanges();
+            db.Entry(receipt).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            db.SaveChanges();
         }
 
         public void Delete(int id)
         {
             var receipt = Get(id);
-            _db.Entry(receipt).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
-            _db.SaveChanges();
+            db.Entry(receipt).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
+            db.SaveChanges();
         }
 
         public Receipt Get(int id)
         {
-            var receipt = _db.Receipts.FirstOrDefault(m => m.Id == id);
+            var receipt = db.Receipts.FirstOrDefault(m => m.Id == id);
             if (receipt == null)
             {
                 throw new Exception("Объект не найден!");

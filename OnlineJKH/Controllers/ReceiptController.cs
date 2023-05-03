@@ -1,9 +1,7 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using OnlineJKH.BLL;
 using OnlineJKH.DAL.Entities;
-using System.Data;
 
 namespace OnlineJKH.Controllers
 {
@@ -14,19 +12,17 @@ namespace OnlineJKH.Controllers
         {
             _dataManager = dataManager;
         }
-        [Authorize(Roles = "admin, user")]
+
         public IActionResult Index()
         {
             return View(_dataManager.ReceiptService.GetReceipts());
         }
-        [Authorize(Roles = "admin, user")]
         [HttpGet]
         public IActionResult Create()
         {
             ViewBag.MetRead = new SelectList(_dataManager.MeterReadingService.GetMeterReadings().ToList(), "Id", "IndicationValue");
             return View();
         }
-        [Authorize(Roles = "admin, user")]
         [HttpPost]
         public IActionResult Create(Receipt receipt)
         {
@@ -38,7 +34,6 @@ namespace OnlineJKH.Controllers
             ViewBag.MetRead = new SelectList(_dataManager.MeterReadingService.GetMeterReadings().ToList(), "Id", "IndicationValue");
             return View(receipt);
         }
-        [Authorize(Roles = "admin, user")]
         [HttpGet]
         public IActionResult Edit(int id)
         {
@@ -46,7 +41,6 @@ namespace OnlineJKH.Controllers
             var receipt = _dataManager.ReceiptService.Get(id);
             return View(receipt);
         }
-        [Authorize(Roles = "admin, user")]
         [HttpPost]
         public IActionResult Edit(Receipt receipt)
         {
@@ -58,7 +52,6 @@ namespace OnlineJKH.Controllers
             ViewBag.MeterRead = new SelectList(_dataManager.MeterReadingService.GetMeterReadings().ToList(), "Id", "IndicationValue");
             return View(receipt);
         }
-        [Authorize(Roles = "admin, user")]
         public IActionResult Delete(int id)
         {
             _dataManager.ReceiptService.Delete(id);

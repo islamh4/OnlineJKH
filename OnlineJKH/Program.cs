@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using OnlineJKH.BLL;
 using OnlineJKH.BLL.Interfaces;
@@ -6,12 +5,6 @@ using OnlineJKH.BLL.Service;
 using OnlineJKH.DAL.EF;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(option =>
-{
-    option.LoginPath = "/Account/Login";
-    option.AccessDeniedPath = "/Account/Login";
-});
-builder.Services.AddAuthorization();
 string connection = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<EFDBContext>(options => options.UseSqlServer(connection));
 // Add services to the container.
@@ -19,12 +12,9 @@ builder.Services.AddTransient<IPersonalAccountService, PersonalAccountService>()
 builder.Services.AddTransient<IMeterReadingService, MeterReadingService>();
 builder.Services.AddTransient<IReceiptService, ReceiptService>();
 builder.Services.AddTransient<IUserService, UserService>();
-builder.Services.AddTransient<IAccountService, AccountService>();
 builder.Services.AddScoped<DataManager>();
 builder.Services.AddControllersWithViews();
 var app = builder.Build();
-app.UseAuthentication();
-app.UseAuthorization();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
@@ -39,6 +29,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");

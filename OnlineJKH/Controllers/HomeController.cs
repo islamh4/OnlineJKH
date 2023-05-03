@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using OnlineJKH.BLL;
 using OnlineJKH.DAL.Entities;
 using OnlineJKH.Models;
@@ -14,7 +13,6 @@ namespace OnlineJKH.Controllers
         {
             _logger = logger;
         }
-        [Authorize(Roles = "admin, user")]
         public IActionResult Index()
         {
             return View();

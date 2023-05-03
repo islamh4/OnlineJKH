@@ -11,8 +11,4 @@
     <ProjectReference Include="..\OnlineJKH.DAL\OnlineJKH.DAL.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.6" />
-  </ItemGroup>
-
 </Project>

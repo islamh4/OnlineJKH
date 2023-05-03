@@ -13,41 +13,41 @@ namespace OnlineJKH.BLL.Service
 {
     public class MeterReadingService : IMeterReadingService
     {
-        EFDBContext _db;
-        public MeterReadingService(EFDBContext db)
+        EFDBContext db;
+        public MeterReadingService(EFDBContext _db)
         {
-            _db = db;
+            db = _db;
         }
         public void Create(MeterReading meter)
         {
             if (meter == null)
                 throw new Exception("Данные не найдены!");
-            _db.MeterReadings.Add(meter);
-            _db.SaveChanges();
+            db.MeterReadings.Add(meter);
+            db.SaveChanges();
         }
 
         public IEnumerable<MeterReading> GetMeterReadings()
         {
-            return _db.MeterReadings.ToList();
+            return db.MeterReadings.Include(m => m.PersonalAccount);
         }
         public void Update(MeterReading meter)
         {
             if (meter == null)
                 throw new Exception("Данные не найдены!");
-            _db.Entry(meter).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-            _db.SaveChanges();
+            db.Entry(meter).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            db.SaveChanges();
         }
 
         public void Delete(int id)
         {
             var metRead = Get(id);
-            _db.Entry(metRead).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
-            _db.SaveChanges();
+            db.Entry(metRead).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
+            db.SaveChanges();
         }
 
         public MeterReading Get(int id)
         {
-            var metRead = _db.MeterReadings.FirstOrDefault(m => m.Id == id);
+            var metRead = db.MeterReadings.FirstOrDefault(m => m.Id == id);
             if (metRead == null)
             {
                 throw new Exception("Объект не найден!");
