@@ -14,17 +14,21 @@
             <td>СНИЛС</td>
             <td>Данные паспорта</td>
             <td>Админ</td>
+            <td>Логин</td>
+            <td>Пароль</td>
         </tr>
         @foreach (var item in Model)
         {
             <tr>
                 <td>@item.Surname</td>
                 <td>@item.Name</td>
-                <td>@item.Paronymic</td>
+                <td>@item.Patronymic</td>
                 <td>@item.Address</td>
                 <td>@item.Snils</td>
                 <td>@item.PassportInfo</td>
-                <td>@item.IsAdmin</td>
+                <td>@item.Role.Name</td>
+                <td>@item.Account.Login</td>
+                <td>@item.Account.Password</td>
                 <td><a asp-action="Edit" asp-controller="User" asp-route-id="@item.Id">Изменить</a></td>
                 <td><a asp-action="Delete" asp-controller="User" asp-route-id="@item.Id">Удалить</a></td>
             </tr>
