@@ -15,6 +15,6 @@ namespace OnlineJKH.DAL.Entities
         [Range(10000000, 99999999, ErrorMessage = "Показания счетчиков обязательно!")]
         public int IndicationValue { get; set; }
         public int PersonalAccountId { get; set; }
-        public PersonalAccount? PersonalAccount { get; set; }
+        public virtual PersonalAccount? PersonalAccount { get; set; }
     }
 }
