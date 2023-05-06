@@ -23,7 +23,10 @@ namespace OnlineJKH.Controllers
         }
         public IEnumerable<UserViewModel> UserViews(IEnumerable<User> user)
         {
-            return _dataManager.UserService.GetUsers().Select(m => new UserViewModel { Id = m.Id , FIO = (m.Surname+" "+m.Name+" "+m.Patronymic).ToString()}).ToList();
+            return _dataManager.UserService.GetUsers().Select(m => new UserViewModel { 
+                Id = m.Id , 
+                FIO = (m.Surname+" "+m.Name+" "+m.Patronymic).ToString()
+            }).ToList();
         }
         [Authorize(Roles = "admin")]
         [HttpGet]
