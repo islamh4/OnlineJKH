@@ -19,6 +19,7 @@ namespace OnlineJKH.Controllers
         {
             return View();
         }
+        public string LayoutUser;
         [HttpPost]
         public async Task<IActionResult> Login(AccountViewModel model)
         {
@@ -28,14 +29,14 @@ namespace OnlineJKH.Controllers
                 var response = _dataManager.AccountService.Login(account);
                 if (response == null) { return Unauthorized(); }
                 await HttpContext.SignInAsync(response);
-                return RedirectToAction("Index","Home");
+                return Redirect("~/Home/Index");
             }
             return View(model);
         }
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login", "Account");
         }
     }
 }

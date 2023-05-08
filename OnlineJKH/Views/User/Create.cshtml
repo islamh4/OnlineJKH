@@ -42,7 +42,7 @@
     <br />
     @Html.LabelFor(m => m.Role.Name)
     <br/>
-    @Html.DropDownListFor(m => m.Role.Id, ViewBag.Role as SelectList,"Выберите роль пользователя!")
+    @Html.DropDownListFor(m => m.RoleId, ViewBag.Role as SelectList,"Выберите роль пользователя!")
     <br />
     @Html.ValidationMessageFor(m => m.Role.Name)
     <br />

@@ -10,8 +10,10 @@ namespace OnlineJKH.DAL.Entities
     public class Account
     {
         public int Id { get; set; }
+        [Phone]
         [Display(Name = "Логин")]
         public string Login { get; set; }
+        [MinLength(8)]
         [Display(Name = "Пароль")]
         public string Password { get; set; }
     }
