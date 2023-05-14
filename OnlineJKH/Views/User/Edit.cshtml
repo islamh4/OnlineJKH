@@ -42,7 +42,7 @@
     <br />
     @Html.LabelFor(m => m.Role.Name)
     <br />
-    @Html.DropDownListFor(m => m.Role.Id, ViewBag.Role as SelectList,"Выберите роль пользователя!")
+    @Html.DropDownListFor(m => m.RoleId, ViewBag.Role as SelectList,"Выберите роль пользователя!")
     <br />
     @Html.ValidationMessageFor(m => m.Role.Name)
     <br />
@@ -58,5 +58,5 @@
     <br />
     @Html.ValidationMessageFor(m => m.Account.Password)
     <br />
-    <input type="submit" value="Добавить" />    <a asp-action="Index" asp-controller="User">Список</a>
+    <input type="submit" value="Сохранить" />    <a asp-action="Index" asp-controller="User">Список</a>
 }

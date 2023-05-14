@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using OnlineJKH.BLL;
 using OnlineJKH.DAL.Entities;
-using OnlineJKH.Models.EditModel;
 using OnlineJKH.Models.ViewModel;
 using System.Data;
 
