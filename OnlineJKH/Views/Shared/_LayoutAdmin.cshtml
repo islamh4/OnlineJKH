@@ -15,11 +15,13 @@
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Онлайн-ЖКХ</a>
                 <a class="navbar-brand" asp-area="" asp-controller="MeterReading" asp-action="Index">Показание счётчиков</a>
                 <a class="navbar-brand" asp-area="" asp-controller="Receipt" asp-action="Index">Квитанция</a>
-                <select class="select">
-                    <option>Администрирование</option>
-                    <option value="/PersonalAccount/Index">Лицевые счета</option>
-                    <option value="/User/Index">Пользователи</option>
-                </select>
+                <div class="dropdown navbar-brand">
+                    <a class="dropbtn" style="color: black;">Администрирование</a>
+                    <div class="dropdown-content">
+                        <a href="/PersonalAccount/Index" style="color:black;">Лицевые счета</a>
+                        <a href="/User/Index" style="color:black;">Пользователи</a>
+                    </div>
+                </div>
                 <a class="navbar-brand" asp-area="" asp-controller="Account" asp-action="Logout">Выйти</a>
             </div>
         </nav>
@@ -39,13 +41,6 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
-    <script>
-        $(document).ready(function () {
-            $('.select').change(function () {
-                window.location.href = $(this).val();
-            });
-        });
-    </script>
 </body>
 </html>
 <style>

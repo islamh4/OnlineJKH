@@ -1,25 +1,32 @@
 ﻿@model OnlineJKH.Models.ViewModel.AccountViewModel
 @{
     Layout = "~/Views/Account/Shared/_Layout.cshtml";
-    ViewData["Title"] = "Логин";
 }
-<link rel="stylesheet" type="text/css" href="~/css/login.css" />
 @using (Html.BeginForm("Login", "Account", FormMethod.Post))
 {
-    <div class="block">
-        @Html.LabelFor(m => m.Login)
-        <br />
-        @Html.TextBoxFor(m => m.Login)
-        <br />
-        @Html.ValidationMessageFor(m => m.Login)
-        <br />
-        @Html.LabelFor(m => m.Password)
-        <br />
-        @Html.TextBoxFor(m => m.Password)
-        <br />
-        @Html.ValidationMessageFor(m => m.Password)
-        <br />
-        <br/>
-        <input type="submit" value="Войти" style="padding: 8px" />
+    <div class="row d-flex align-items-center justify-content-center" style="min-height: 100vh">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-4">
+            <h2 class="row justify-content-center">Авторизация в ЖКХ</h2>
+            <div class="card-body p-5 text-start">
+                <div class="mb-md-3 justify-content-center">
+                    @Html.ValidationSummary(true, "")
+                    <div class="form-floating">
+                        <input type="tel" name="Login" class="form-control" id="floatingInput" placeholder="Логин">
+                        <label for="floatingInput">Логин</label>
+                    </div>
+                    <div class="m-3">
+                        @Html.ValidationMessageFor(m => m.Login)
+                    </div>
+                    <div class="form-floating">
+                        <input type="password" name="Password" class="form-control" id="floatingPassword" placeholder="Пароль">
+                        <label for="floatingPassword">Пароль</label>
+                    </div>
+                    <div class="m-3">
+                        @Html.ValidationMessageFor(m => m.Password)
+                    </div>
+                    <input type="submit" value="Войти" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
     </div>
 }

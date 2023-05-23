@@ -1,6 +1,5 @@
 html {
     font-size: 14px;
-    background: radial-gradient(black, transparent);
 }
 
 @media (min-width: 768px) {
@@ -15,48 +14,10 @@ html {
 
 html {
   position: relative;
-  min-height: 100%;
 }
-
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
 }
-.block {
-    border-radius: 30px;
-    width: 265px;
-    height: 250px;
-    position: absolute;
-    padding: 40px;
-    top: 20%;
-    left: 41%;
-    background-color: #c324249c;
-}
-label {
-    display: inline-block;
-    font-size: 25px;
-    font-family: emoji;
-}
-input, button {
-    border-radius: 10px;
-    margin: 0;
-    font-family: serif;
-    font-size: 20px;
-    line-height: inherit;
-    color: #5a79bdc7;
-}
-container-fluidw {
-    display: flex;
-    flex-wrap: inherit;
-    align-items: center;
-    justify-content: space-between;
-}
-input[type="submit"]:hover {
-    background-color: #a3b9cb;
-    color: #0c0117
-}
-
-input[type="submit"]:focus {
-    outline-color: transparent;
-    outline-style: solid;
-    box-shadow: 0 0 0 4px #5a01a7;
+input {
+    width: -webkit-fill-available;
 }
