@@ -19,7 +19,6 @@ namespace OnlineJKH.Controllers
         {
             return View();
         }
-        public string LayoutUser;
         [HttpPost]
         public async Task<IActionResult> Login(AccountViewModel model)
         {
@@ -27,7 +26,7 @@ namespace OnlineJKH.Controllers
             {
                 Account account = new Account { Login = model.Login, Password = model.Password };
                 var response = _dataManager.AccountService.Login(account);
-                if (response == null) { return Unauthorized(); }
+                if (response == null) { ModelState.AddModelError("", "Пользователь не найден"); return View(model); }
                 await HttpContext.SignInAsync(response);
                 return Redirect("~/Home/Index");
             }
