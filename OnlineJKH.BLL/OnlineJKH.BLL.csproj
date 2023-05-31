@@ -19,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="ClosedXML" Version="0.101.0" />
     <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.9" />
   </ItemGroup>
 

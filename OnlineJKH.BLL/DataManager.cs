@@ -15,7 +15,12 @@ namespace OnlineJKH.BLL
         private IUserService _userService;
         private IAccountService _accountService;
         private IExportExcelService _exportExcelService;
-        public DataManager(IPersonalAccountService personalAccountService, IMeterReadingService meterReadingService, IReceiptService receiptService, IUserService userService, IAccountService accountService, IExportExcelService exportExcelService)
+        public DataManager(IPersonalAccountService personalAccountService, 
+            IMeterReadingService meterReadingService, 
+            IReceiptService receiptService, 
+            IUserService userService, 
+            IAccountService accountService, 
+            IExportExcelService exportExcelService)
         {
             _personalAccountService = personalAccountService;
             _meterReadingService = meterReadingService;

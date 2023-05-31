@@ -1,11 +1,9 @@
-﻿using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using OnlineJKH.BLL;
-using OnlineJKH.DAL.Entities;
 using OnlineJKH.Models;
 using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
+using System.IO;
 
 namespace OnlineJKH.Controllers
 {
@@ -25,8 +23,11 @@ namespace OnlineJKH.Controllers
         }
         public IActionResult ExportExcel()
         {
-            _dataManager.ExportExcelService.ExportExcel();
-            return Redirect("~/Home/Index");
+            return new FileContentResult(_dataManager.ExportExcelService.ExportExcel(),
+                    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+            {
+                FileDownloadName = $"FileAdmin.xlsx"
+            };
         }
         public IActionResult Privacy()
         {

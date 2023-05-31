@@ -1,4 +1,5 @@
-﻿using Microsoft.Office.Interop.Excel;
+﻿using ClosedXML.Excel;
+using Microsoft.Office.Interop.Excel;
 using OnlineJKH.BLL.Interfaces;
 using OnlineJKH.DAL.EF;
 using OnlineJKH.DAL.Entities;
@@ -8,6 +9,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 using Excel = Microsoft.Office.Interop.Excel;
 
 namespace OnlineJKH.BLL.Service
@@ -19,47 +21,39 @@ namespace OnlineJKH.BLL.Service
         {
             db = context;
         }
-        public void ExportExcel()
+        public byte[] ExportExcel()
         {
-            var ExpEXl = db.PersonalAccounts.Select(m => new ExportExcel
+            var data = db.PersonalAccounts.Select(m => new ExportExcel
             {
                 Number = m.Number,
                 FIO = (m.User.Surname + " " + m.User.Name + " " + m.User.Patronymic).ToString(),
                 Snils = m.User.Snils
             }).ToList();
-            Excel.Application app = new Excel.Application
+
+            using (XLWorkbook workbook = new XLWorkbook())
             {
-                Visible = true,
-                SheetsInNewWorkbook = 1,
-            };
-            Excel.Workbook workBook = app.Workbooks.Add(Type.Missing);
-            app.DisplayAlerts = false;
-            Excel.Worksheet sheet = (Excel.Worksheet)app.Worksheets.get_Item(1);
-            sheet.Name = $"Отчёт {DateTime.Now.ToString("d")}";
-            sheet.Cells[1, 1] = "Лицевой счёт";
-            sheet.Cells[1, 2] = "ФИО";
-            sheet.Cells[1, 3] = "СНИЛС";
-            for (int i = 2; i <= ExpEXl.Count+1; i++)
-            {
-                sheet.Cells[i, 1] = ExpEXl[i-2].Number;
-                sheet.Cells[i, 2] = ExpEXl[i-2].FIO;
-                sheet.Cells[i, 3] = ExpEXl[i-2].Snils;
-            }
-            Excel.Range range;
-            for (int i = 1; i <= ExpEXl.Count+1; i++) 
-            {
-                for (int j = 1; j <= 3; j++)
+                var worksheet = workbook.Worksheets.Add($"Отчёт {DateTime.Now.ToString("d")}");
+
+                worksheet.Cell("A1").Value = "Лицевой счёт";
+                worksheet.Cell("B1").Value = "ФИО";
+                worksheet.Cell("C1").Value = "СНИЛС";
+                worksheet.Row(1).Style.Font.Bold = true;
+
+                for (int i = 0; i < data.Count; i++)
                 {
-                    range = sheet.Cells[i, j] as Excel.Range;
-                    range.EntireColumn.AutoFit();
-                    range.EntireRow.AutoFit();
+                    worksheet.Cell(i+2, 1).Value = data[i].Number;
+                    worksheet.Cell(i+2, 2).Value = data[i].FIO;
+                    worksheet.Cell(i + 2, 3).Value = data[i].Snils;
+                }
+                worksheet.Columns("A", "D").AdjustToContents();
+                using (var stream = new MemoryStream())
+                {
+                    workbook.SaveAs(stream);
+                    stream.Flush();
+
+                    return stream.ToArray();
                 }
             }
-            app.Application.ActiveWorkbook.SaveAs("FileAdmin.xlsx", Type.Missing,
-  Type.Missing, Type.Missing, Type.Missing, Type.Missing, Excel.XlSaveAsAccessMode.xlNoChange,
-  Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
-            app.Quit();
-            System.Runtime.InteropServices.Marshal.ReleaseComObject(app);
         }
     }
 }
