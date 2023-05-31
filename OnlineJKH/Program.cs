@@ -21,6 +21,7 @@ builder.Services.AddTransient<IMeterReadingService, MeterReadingService>();
 builder.Services.AddTransient<IReceiptService, ReceiptService>();
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<IAccountService, AccountService>();
+builder.Services.AddTransient<IExportExcelService, ExportExcelService>();
 builder.Services.AddScoped<DataManager>();
 builder.Services.AddControllersWithViews();
 var app = builder.Build();
