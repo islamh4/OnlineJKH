@@ -10,12 +10,24 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluidw" style="margin-left: 20px;">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Онлайн-ЖКХ</a>
-                <a class="navbar-brand" asp-area="" asp-controller="MeterReading" asp-action="Index">Показание счётчиков</a>
-                <a class="navbar-brand" asp-area="" asp-controller="Receipt" asp-action="Index">Квитанция</a>
-                <a class="navbar-brand" asp-area="" asp-controller="Account" asp-action="Logout">Выйти</a>
+        <nav class="navbar navbar-expand navbar-dark bg-primary p-0" role="navigation">
+            <div class="container" style="flex-direction: column-reverse;">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav align-items-center">
+                        <li class="nav-item">
+                            <a class="nav-link active" role="button" asp-controller="Home" asp-action="Index" style="font-weight:bold;">Онлайн-ЖКХ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" role="button" asp-controller="MeterReading" asp-action="Index">Показание счётчиков</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" role="button" asp-controller="Receipt" asp-action="Index">Квитанция</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" role="button" asp-controller="Account" asp-action="Logout">Выйти</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </nav>
     </header>
