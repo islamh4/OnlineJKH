@@ -4,17 +4,21 @@
 }
 @using (Html.BeginForm("Create", "MeterReading", FormMethod.Post))
 {
-    @Html.LabelFor(m => m.IndicationValue)
-    <br />
-    @Html.TextBoxFor(m => m.IndicationValue)
-    <br />
-    @Html.ValidationMessageFor(m => m.IndicationValue)
-    <br />
-    @Html.LabelFor(m => m.PersonalAccount.Number)
-    <br />
-    @Html.DropDownListFor(m => m.PersonalAccountId, ViewBag.PersAc as SelectList,"Выберите лицевой счёт")
-    <br />
-    @Html.ValidationMessageFor(m => m.PersonalAccount.Number)
-    <br />
-        <input type="submit" value="Добавить" />    <a asp-action="Index" asp-controller="MeterReading">Список</a>
+    <div class="row d-flex align-items-center justify-content-center" style="min-height: 100vh">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-4" style="margin-left: 70px;">
+            @Html.LabelFor(m=>m.IndicationValue,new{@for="Indication",@class="h4"})
+            <br />
+            @Html.TextBoxFor(m=>m.IndicationValue, new{@type="text", @style="width: 268px;", @id="Indication",@class="form-control"})
+            <br />
+            @Html.ValidationMessageFor(m => m.IndicationValue)
+            <br />
+            @Html.LabelFor(m => m.PersonalAccount.Number, new{@for="PersAccId",@class="h4"})
+            <br />
+            @Html.DropDownListFor(m => m.PersonalAccountId, ViewBag.PersAc as SelectList,"Выберите лицевой счёт...", new{@id="PersAccId", @style="width: 268px;",@class="form-control"})
+            <br />
+            @Html.ValidationMessageFor(m => m.PersonalAccount.Number)
+            <br />
+            <input type="submit" class="btn-primary btn" value="Добавить" />    <a class="btn btn-primary" asp-action="Index" asp-controller="MeterReading">Вернуться к списку</a>
+        </div>
+    </div>
 }
