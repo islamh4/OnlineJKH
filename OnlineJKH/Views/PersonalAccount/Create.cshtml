@@ -4,16 +4,20 @@
 }
 @using(Html.BeginForm("Create", "PersonalAccount", FormMethod.Post))
 {
-    @Html.LabelFor(m => m.Number)
-    <br/>
-    @Html.TextBoxFor(m => m.Number)
-    <br/>
-    @Html.ValidationMessageFor(m => m.Number)
-    <br />
-    @Html.Label("ФИО")
-    <br />
-    @Html.DropDownListFor(m => m.UserId, ViewBag.User as SelectList, "Выберите пользователя")
-    <br />
-    <br/>
-    <input type="submit" value="Добавить" />   <a asp-action="Index" asp-controller="PersonalAccount">Список</a>
+    <div class="row d-flex align-items-center justify-content-center" style="min-height: 100vh">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-4" style="margin-left: 70px;">
+            @Html.LabelFor(m => m.Number,new{@for="Number",@class="h4"})
+            <br/>
+            @Html.TextBoxFor(m => m.Number, new{@type="text", @style="width: 268px;margin-bottom: -15px;", @id="Number",@class="form-control"})
+            <br/>
+            @Html.ValidationMessageFor(m => m.Number)
+            <br />
+            @Html.Label("ФИО",null, new{@for="FIO",@class="h4"})
+            <br />
+            @Html.DropDownListFor(m => m.UserId, ViewBag.User as SelectList, "Выберите пользователя...", new{@id="PersAccId", @style="width: 268px;margin-bottom: -15px;",@class="form-control"})
+            <br />
+            <br/>
+            <input type="submit" class="btn-primary btn" value="Добавить" />   <a asp-action="Index" class="btn btn-primary" asp-controller="PersonalAccount">Вернуться к списку</a>
+        </div>
+    </div>
 }

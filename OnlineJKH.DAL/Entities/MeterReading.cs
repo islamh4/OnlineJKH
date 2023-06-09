@@ -11,7 +11,7 @@ namespace OnlineJKH.DAL.Entities
     {
         public int Id { get; set; }
         [Display(Name = "Показания счетчика")]
-        [RegularExpression(@"\d{8}", ErrorMessage = "Ошибка ввода!")]
+        [RegularExpression(@"\d{8}", ErrorMessage = "Ошибка ввода! Должно быть 8 чисел!")]
         [Range(10000000, 99999999, ErrorMessage = "Показания счетчиков обязательно!")]
         public int IndicationValue { get; set; }
         public int PersonalAccountId { get; set; }

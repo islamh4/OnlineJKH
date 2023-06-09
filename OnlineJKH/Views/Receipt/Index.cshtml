@@ -4,20 +4,24 @@
 }
 @using (Html.BeginForm())
 {
-    <a asp-action="Create" asp-controller="Receipt">Добавить квитанцию</a>
-    <table class="table">
-        <tr>
-            <td>Сумма для оплаты</td>
-            <td>Показания счетчика</td>
-        </tr>
+    <a asp-action="Create" class="btn btn-primary m-3 mx-0" asp-controller="Receipt">Добавить квитанцию</a>
+    <table class="table table-bordered border-dark text-center align-content-center w-75">
+        <thead class="bg-primary">
+            <tr class="border-top-0">
+                <th style="border-top-width: thin">Сумма для оплаты</th>
+                <th style="border-top-width: thin">Показания счетчика</th>
+            </tr>
+        </thead>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>@item.PaymentAmount</td>
-                <td>@item?.MeterReading.IndicationValue</td>
-                <td><a asp-action="Edit" asp-controller="Receipt" asp-route-id="@item.Id">Изменить</a></td>
-                <td><a asp-action="Delete" asp-controller="Receipt" asp-route-id="@item.Id">Удалить</a></td>
-            </tr>
+            <tbody class="table-primary border-dark align-baseline">
+                <tr>
+                    <td>@item.PaymentAmount</td>
+                    <td>@item?.MeterReading.IndicationValue</td>
+                    <td class="border-top border-bottom border-end bg-white border-white" style="padding-left:16px; width:165px;"><a class="btn btn-primary px-4" asp-action="Edit" asp-controller="Receipt" asp-route-id="@item.Id">Изменить</a></td>
+                    <td class="border-top border-bottom border-end bg-white border-white" style="width:100px"><a class="btn btn-primary px-4" asp-action="Delete" asp-controller="Receipt" asp-route-id="@item.Id">Удалить</a></td>
+                </tr>
+            </tbody>
         }
     </table>
 }
