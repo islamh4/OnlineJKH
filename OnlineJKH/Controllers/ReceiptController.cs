@@ -21,41 +21,43 @@ namespace OnlineJKH.Controllers
         }
         [Authorize(Roles = "admin, user")]
         [HttpGet]
-        public IActionResult Create()
+        public IActionResult EditForm(int id = -1)
         {
             ViewBag.MetRead = new SelectList(_dataManager.MeterReadingService.GetMeterReadings().ToList(), "Id", "IndicationValue");
-            return View();
-        }
-        [Authorize(Roles = "admin, user")]
-        [HttpPost]
-        public IActionResult Create(Receipt receipt)
-        {
-            if (ModelState.IsValid)
+            if (id == -1)
             {
-                _dataManager.ReceiptService.Create(receipt);
-                return RedirectToAction("Index");
+                ViewBag.Button = "Добавить";
+                return View();
             }
-            ViewBag.MetRead = new SelectList(_dataManager.MeterReadingService.GetMeterReadings().ToList(), "Id", "IndicationValue");
-            return View(receipt);
-        }
-        [Authorize(Roles = "admin, user")]
-        [HttpGet]
-        public IActionResult Edit(int id)
-        {
-            ViewBag.MetRead = new SelectList(_dataManager.MeterReadingService.GetMeterReadings().ToList(), "Id", "IndicationValue");
-            var receipt = _dataManager.ReceiptService.Get(id);
-            return View(receipt);
+
+            ViewBag.Button = "Сохранить";
+            ViewBag.NameView = "Изменение";
+            return View(_dataManager.ReceiptService.Get(id));
         }
         [Authorize(Roles = "admin, user")]
         [HttpPost]
-        public IActionResult Edit(Receipt receipt)
+        public ActionResult EditForm(Receipt receipt)
         {
             if (ModelState.IsValid)
             {
+                if (receipt.Id == 0)
+                {
+                    _dataManager.ReceiptService.Create(receipt);
+                    return RedirectToAction("Index");
+                }
                 _dataManager.ReceiptService.Update(receipt);
                 return RedirectToAction("Index");
+
             }
-            ViewBag.MeterRead = new SelectList(_dataManager.MeterReadingService.GetMeterReadings().ToList(), "Id", "IndicationValue");
+            if (receipt.Id == 0)
+            {
+                ViewBag.Button = "Добавить";
+                ViewBag.MetRead = new SelectList(_dataManager.MeterReadingService.GetMeterReadings().ToList(), "Id", "IndicationValue");
+                return View(receipt);
+            }
+            ViewBag.Button = "Сохранить";
+            ViewBag.NameView = "Изменение";
+            ViewBag.MetRead = new SelectList(_dataManager.MeterReadingService.GetMeterReadings().ToList(), "Id", "IndicationValue");
             return View(receipt);
         }
         [Authorize(Roles = "admin, user")]

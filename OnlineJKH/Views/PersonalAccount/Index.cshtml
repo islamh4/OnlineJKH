@@ -4,7 +4,7 @@
 }
 @using (Html.BeginForm())
 {
-    <a asp-action="Create" asp-controller="PersonalAccount" class="btn btn-primary m-3 mx-0">Добавить лицевой счёт</a>
+    <a asp-action="EditForm" asp-controller="PersonalAccount" class="btn btn-primary m-3 mx-0">Добавить лицевой счёт</a>
     <table class="table table-bordered border-dark text-center align-content-center w-75">
         <thead class="bg-primary">
             <tr class="border-top-0">
@@ -18,7 +18,7 @@
                 <tr>
                     <td>@item.Number</td>
                     <td>@((item.User.Surname + " " + item.User.Name + " " + item.User.Patronymic).ToString())</td>
-                    <td class="border-top border-bottom border-end bg-white border-white" style="padding-left:16px; width:165px;"><a class="btn btn-primary px-4" asp-action="Edit" asp-controller="PersonalAccount" asp-route-id="@item.Id">Изменить</a></td>
+                    <td class="border-top border-bottom border-end bg-white border-white" style="padding-left:16px; width:165px;"><a class="btn btn-primary px-4" asp-action="EditForm" asp-controller="PersonalAccount" asp-route-id="@item.Id">Изменить</a></td>
                     <td class="border-top border-bottom border-end bg-white border-white" style="width:100px"><a class="btn btn-primary px-4" asp-action="Delete" asp-controller="PersonalAccount" asp-route-id="@item.Id">Удалить</a></td>
                 </tr>
             </tbody>

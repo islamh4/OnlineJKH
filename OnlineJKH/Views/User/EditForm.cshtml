@@ -1,0 +1,82 @@
+﻿@model OnlineJKH.DAL.Entities.User
+@{
+    ViewData["Title"] = ViewBag.NameView ?? "Добавление";
+}
+@using (Html.BeginForm("EditForm", "User", FormMethod.Post))
+{
+    <div class="row g-3 p-5">
+        <div class="col-3">
+            @Html.LabelFor(m => m.Surname,new{@for="Surname",@class="h5"})
+            <br />
+            @Html.TextBoxFor(m => m.Surname, new{@type="text", @style="width: 268px;margin-bottom: -15px;", @id="Surname",@class="form-control"})
+            <br />
+            @Html.ValidationMessageFor(m => m.Surname)
+            <br />
+        </div>
+        <div class="col-3">
+            @Html.LabelFor(m => m.Name,new{@for="Name",@class="h5"})
+            <br />
+            @Html.TextBoxFor(m => m.Name, new{@type="text", @style="width: 268px;margin-bottom: -15px;", @id="Name",@class="form-control"})
+            <br />
+            @Html.ValidationMessageFor(m => m.Name)
+            <br />
+        </div>
+        <div class="col-3">
+            @Html.LabelFor(m => m.Patronymic,new{@for="Patronymic",@class="h5"})
+            <br />
+            @Html.TextBoxFor(m => m.Patronymic, new{@type="text", @style="width: 268px;margin-bottom: -15px;", @id="Patronymic",@class="form-control"})
+            <br />
+            @Html.ValidationMessageFor(m => m.Patronymic)
+            <br/>
+        </div>
+        <div class="col-3">
+            @Html.LabelFor(m => m.PassportInfo,new{@for="PassportInfo",@class="h5"})
+            <br />
+            @Html.TextBoxFor(m => m.PassportInfo, new{@type="text", @style="width: 268px;margin-bottom: -15px;", @id="PassportInfo",@class="form-control"})
+            <br />
+            @Html.ValidationMessageFor(m => m.PassportInfo)
+            <br />
+        </div>
+        <div class="col-6">
+            @Html.LabelFor(m => m.Address,new{@for="Address",@class="h5"})
+            <br />
+            @Html.TextAreaFor(m => m.Address, 1, 90, new{@type="text", @style="margin-bottom: -15px;", @id="Address",@class="form-control"})
+            <br />
+            @Html.ValidationMessageFor(m => m.Address)
+            <br />
+        </div>
+        <div class="col-3">
+            @Html.LabelFor(m => m.Snils,new{@for= "Snils", @class = "h5"})
+                <br />
+                @Html.TextBoxFor(m => m.Snils, new{@type="text", @style="width: 268px;margin-bottom: -15px;", @id="Snils",@class="form-control"})
+                <br />
+                @Html.ValidationMessageFor(m => m.Snils)
+            <br />
+        </div>
+        <div class="col-3">
+            @Html.LabelFor(m => m.Role.Name,new{@for="RoleName",@class="h5"})
+                <br />
+                @Html.DropDownListFor(m => m.RoleId, ViewBag.Role as SelectList,"Выберите роль пользователя...", new{@type="text", @style="width: 268px;margin-bottom: -15px;", @id="RoleName",@class="form-control"})
+                <br />
+                @Html.ValidationMessageFor(m => m.Role.Name)
+            <br />
+        </div>
+        <div class="col-3">
+            @Html.LabelFor(m => m.Account.Login,new{@for="AccLogin",@class="h5"})
+                <br />
+                @Html.TextBoxFor(m => m.Account.Login, new{@type="text", @style="width: 268px;margin-bottom: -15px;", @id="AccLogin",@class="form-control"})
+                <br />
+                @Html.ValidationMessageFor(m => m.Account.Login)
+            <br />
+        </div>
+        <div class="col-3">
+                @Html.LabelFor(m => m.Account.Password,new{@for="AccPassw",@class="h5"})
+                <br />
+                @Html.TextBoxFor(m => m.Account.Password, new{@type="text", @style="width: 268px;margin-bottom: -15px;", @id="AccPassw",@class="form-control"})
+                <br />
+                @Html.ValidationMessageFor(m => m.Account.Password)
+            <br />
+        </div>
+        <div class="col-auto align-self-center"><input type="submit" class="btn-primary btn" value=@ViewBag.Button /></div>    <div class="col-auto align-self-center"><a class="btn btn-primary" asp-action="Index" asp-controller="User">Вернуться к списку</a></div>
+    </div>
+}

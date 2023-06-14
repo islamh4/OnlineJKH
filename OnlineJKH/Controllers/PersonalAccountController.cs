@@ -29,42 +29,45 @@ namespace OnlineJKH.Controllers
         }
         [Authorize(Roles = "admin")]
         [HttpGet]
-        public IActionResult Create()
+        public IActionResult EditForm(int id = -1)
         {
             ViewBag.User = new SelectList(UserViews(_dataManager.UserService.GetUsers()), "Id", "FIO");
-            return View();
-        }
-        [Authorize(Roles = "admin")]
-        [HttpPost]
-        public IActionResult Create(PersonalAccount personal)
-        {
-            if (ModelState.IsValid)
+            if (id == -1)
             {
-                _dataManager.PersonalAccountService.Create(personal);
-                return RedirectToAction("Index");
+                ViewBag.Button = "Добавить";
+                return View();
             }
-            ViewBag.User = new SelectList(UserViews(_dataManager.UserService.GetUsers()), "Id", "FIO");
-            return View(personal);
-        }
-        [Authorize(Roles = "admin")]
-        [HttpGet]
-        public IActionResult Edit(int id)
-        {
-            ViewBag.User = new SelectList(UserViews(_dataManager.UserService.GetUsers()), "Id", "FIO");
+            ViewBag.Button = "Сохранить";
+            ViewBag.NameView = "Изменение";
             return View(_dataManager.PersonalAccountService.Get(id));
         }
         [Authorize(Roles = "admin")]
         [HttpPost]
-        public IActionResult Edit(PersonalAccount personal)
+        public ActionResult EditForm(PersonalAccount personal)
         {
             if (ModelState.IsValid)
             {
+                if (personal.Id == 0)
+                {
+                    _dataManager.PersonalAccountService.Create(personal);
+                    return RedirectToAction("Index");
+                }
                 _dataManager.PersonalAccountService.Update(personal);
                 return RedirectToAction("Index");
+
             }
+            if (personal.Id == 0)
+            {
+                ViewBag.Button = "Добавить";
+                ViewBag.User = new SelectList(UserViews(_dataManager.UserService.GetUsers()), "Id", "FIO");
+                return View(personal);
+            }
+            ViewBag.Button = "Сохранить";
+            ViewBag.NameView = "Изменение";
             ViewBag.User = new SelectList(UserViews(_dataManager.UserService.GetUsers()), "Id", "FIO");
             return View(personal);
         }
+        
         [Authorize(Roles = "admin")]
         public IActionResult Delete(int id)
         {
