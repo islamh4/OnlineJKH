@@ -75,6 +75,7 @@
                 @Html.TextBoxFor(m => m.Account.Password, new{@type="text", @style="width: 268px;margin-bottom: -15px;", @id="AccPassw",@class="form-control"})
                 <br />
                 @Html.ValidationMessageFor(m => m.Account.Password)
+                @Html.HiddenFor(m=>m.AccountId);
             <br />
         </div>
         <div class="col-auto align-self-center"><input type="submit" class="btn-primary btn" value=@ViewBag.Button /></div>    <div class="col-auto align-self-center"><a class="btn btn-primary" asp-action="Index" asp-controller="User">Вернуться к списку</a></div>
