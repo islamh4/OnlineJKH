@@ -17,7 +17,7 @@ namespace OnlineJKH.BLL.Service
             var account = _db.Accounts.FirstOrDefault(m => m.Login == acc.Login && m.Password == acc.Password);
             if (account == null)
                return null;
-            var user = _db.Users.FirstOrDefault(m => m.Id == account.Id);
+            var user = _db.Users.FirstOrDefault(m => m.AccountId == account.Id);
             var claims = new List<Claim>()
             {
                 new Claim(ClaimsIdentity.DefaultNameClaimType, user.Account.Login),
