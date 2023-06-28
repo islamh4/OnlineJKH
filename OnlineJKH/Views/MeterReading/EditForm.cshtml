@@ -1,8 +1,8 @@
 ﻿@model OnlineJKH.DAL.Entities.MeterReading
 @{
-    ViewData["Title"] = "Добавление";
+    ViewData["Title"] = ViewBag.NameView ?? "Добавление";
 }
-@using (Html.BeginForm("Create", "MeterReading", FormMethod.Post))
+@using (Html.BeginForm("EditForm", "MeterReading", FormMethod.Post))
 {
     <div class="row d-flex align-items-center justify-content-center" style="min-height: 100vh">
         <div class="col-12 col-md-8 col-lg-6 col-xl-4" style="margin-left: 70px;">
@@ -18,7 +18,7 @@
             <br />
             @Html.ValidationMessageFor(m => m.PersonalAccount.Number)
             <br />
-            <input type="submit" class="btn-primary btn" value="Добавить" />    <a class="btn btn-primary" asp-action="Index" asp-controller="MeterReading">Вернуться к списку</a>
+            <input type="submit" class="btn-primary btn" value=@ViewBag.Button />    <a class="btn btn-primary" asp-action="Index" asp-controller="MeterReading">Вернуться к списку</a>
         </div>
     </div>
 }

@@ -5,6 +5,7 @@ using OnlineJKH.BLL;
 using OnlineJKH.DAL.EF;
 using OnlineJKH.DAL.Entities;
 using System.Data;
+using System.Diagnostics.Metrics;
 
 namespace OnlineJKH.Controllers
 {
@@ -25,40 +26,43 @@ namespace OnlineJKH.Controllers
         }
         [Authorize(Roles = "admin")]
         [HttpGet]
-        public IActionResult Create()
+        public IActionResult EditForm(int id = -1)
         {
             ViewBag.Role = new SelectList(_db.Roles.ToList(), "Id", "Name");
-            return View();
-        }
-        [Authorize(Roles = "admin")]
-        [HttpPost]
-        public IActionResult Create(User user)
-        {
-            if (ModelState.IsValid)
+            if (id == -1)
             {
-                _dataManager.UserService.Create(user);
-                return RedirectToAction("Index");
+                ViewBag.Button = "Добавить";
+                return View();
             }
-            ViewBag.Role = new SelectList(_db.Roles.ToList(), "Id", "Name");
-            return View(user);
-        }
-        [Authorize(Roles = "admin")]
-        [HttpGet]
-        public IActionResult Edit(int id)
-        {
-            ViewBag.Role = new SelectList(_db.Roles.ToList(), "Id", "Name");
-            var user = _dataManager.UserService.Get(id);
-            return View(user);
+
+
+            ViewBag.Button = "Сохранить";
+            ViewBag.NameView = "Изменение";
+            return View(_dataManager.UserService.Get(id));
         }
         [Authorize(Roles = "admin")]
         [HttpPost]
-        public IActionResult Edit(User user)
+        public ActionResult EditForm(User user)
         {
             if (ModelState.IsValid)
             {
+                if (user.Id == 0)
+                {
+                    _dataManager.UserService.Create(user);
+                    return RedirectToAction("Index");
+                }
                 _dataManager.UserService.Update(user);
                 return RedirectToAction("Index");
+
             }
+            if (user.Id == 0)
+            {
+                ViewBag.Button = "Добавить";
+                ViewBag.Role = new SelectList(_db.Roles.ToList(), "Id", "Name");
+                return View(user);
+            }
+            ViewBag.Button = "Сохранить";
+            ViewBag.NameView = "Изменение";
             ViewBag.Role = new SelectList(_db.Roles.ToList(), "Id", "Name");
             return View(user);
         }

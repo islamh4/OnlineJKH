@@ -21,39 +21,43 @@ namespace OnlineJKH.Controllers
         }
         [Authorize(Roles = "admin, user")]
         [HttpGet]
-        public IActionResult Create()
+        public IActionResult EditForm(int id = -1)
         {
             ViewBag.PersAc = new SelectList(_dataManager.PersonalAccountService.GetPersonalAccounts().ToList(), "Id", "Number");
-            return View();
-        }
-        [Authorize(Roles = "admin, user")]
-        [HttpPost]
-        public IActionResult Create(MeterReading meter)
-        {
-            if (ModelState.IsValid)
+            if(id == -1)
             {
-                _dataManager.MeterReadingService.Create(meter);
-                return RedirectToAction("Index");
+                ViewBag.Button = "Добавить";
+                return View();
             }
-            ViewBag.PersAc = new SelectList(_dataManager.PersonalAccountService.GetPersonalAccounts().ToList(), "Id", "Number");
-            return View(meter);
-        }
-        [Authorize(Roles = "admin, user")]
-        [HttpGet]
-        public IActionResult Edit(int id)
-        {
-            ViewBag.PersAc = new SelectList(_dataManager.PersonalAccountService.GetPersonalAccounts().ToList(), "Id", "Number");
+                
+
+            ViewBag.Button = "Сохранить";
+            ViewBag.NameView = "Изменение";
             return View(_dataManager.MeterReadingService.Get(id));
         }
         [Authorize(Roles = "admin, user")]
         [HttpPost]
-        public IActionResult Edit(MeterReading meter)
+        public ActionResult EditForm(MeterReading meter)
         {
             if (ModelState.IsValid)
             {
+                if(meter.Id == 0)
+                {
+                    _dataManager.MeterReadingService.Create(meter);
+                    return RedirectToAction("Index");
+                }
                 _dataManager.MeterReadingService.Update(meter);
                 return RedirectToAction("Index");
+                
             }
+            if (meter.Id == 0)
+            {
+                ViewBag.Button = "Добавить";
+                ViewBag.PersAc = new SelectList(_dataManager.PersonalAccountService.GetPersonalAccounts().ToList(), "Id", "Number");
+                return View(meter);
+            }
+            ViewBag.Button = "Сохранить";
+            ViewBag.NameView = "Изменение";
             ViewBag.PersAc = new SelectList(_dataManager.PersonalAccountService.GetPersonalAccounts().ToList(), "Id", "Number");
             return View(meter);
         }
