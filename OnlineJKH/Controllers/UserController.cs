@@ -51,6 +51,7 @@ namespace OnlineJKH.Controllers
                     _dataManager.UserService.Create(user);
                     return RedirectToAction("Index");
                 }
+                _dataManager.AccountService.Update(user);
                 _dataManager.UserService.Update(user);
                 return RedirectToAction("Index");
 
@@ -69,6 +70,7 @@ namespace OnlineJKH.Controllers
         [Authorize(Roles = "admin")]
         public IActionResult Delete(int id)
         {
+            _dataManager.AccountService.Delete(_db.Users.FirstOrDefault(m => m.Id==id));
             _dataManager.UserService.Delete(id);
             return RedirectToAction("Index");
         }

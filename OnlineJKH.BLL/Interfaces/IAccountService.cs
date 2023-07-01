@@ -11,5 +11,7 @@ namespace OnlineJKH.BLL.Interfaces
     public interface IAccountService
     {
         ClaimsPrincipal Login(Account account);
+        void Update(User user);
+        void Delete(User user);
     }
 }
