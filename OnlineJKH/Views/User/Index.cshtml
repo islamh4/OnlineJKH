@@ -2,40 +2,69 @@
 @{
     ViewData["Title"] = "Пользователь";
 }
-@using (Html.BeginForm())
-{
+<form asp-action="Index" asp-controller="User" enctype="multipart/form-data">
     <a asp-action="EditForm" asp-controller="User" class="btn btn-primary m-3 mx-0">Добавить пользователь</a>
-    <table class="table table-bordered border-dark text-center align-content-center w-75">
-        <thead class="bg-primary">
-            <tr class="border-top-0">
-                <th style="border-top-width: thin">Фамилия</th>
-                <th style="border-top-width: thin">Имя</th>
-                <th style="border-top-width: thin">Отчество</th>
-                <th style="border-top-width: thin">Адрес</th>
-                <th style="border-top-width: thin">СНИЛС</th>
-                <th style="border-top-width: thin">Данные паспорта</th>
-                <th style="border-top-width: thin">Админ</th>
-                <th style="border-top-width: thin">Логин</th>
-                <th style="border-top-width: thin">Пароль</th>
-            </tr>
-        </thead>
-        @foreach (var item in Model)
-        {
-            <tbody class="table-primary border-dark align-baseline">
-                <tr>
-                    <td>@item.Surname</td>
-                    <td>@item.Name</td>
-                    <td>@item.Patronymic</td>
-                    <td>@item.Address</td>
-                    <td>@item.Snils</td>
-                    <td>@item.PassportInfo</td>
-                    <td>@item.Role.Name</td>
-                    <td>@item.Account.Login</td>
-                    <td>@item.Account.Password</td>
-                    <td class="border-top border-bottom border-end bg-white border-white" style="padding-left:16px; width:165px;"><a class="btn btn-primary px-4" asp-action="EditForm" asp-controller="User" asp-route-id="@item.Id">Изменить</a></td>
-                    <td class="border-top border-bottom border-end bg-white border-white" style="width:100px"><a class="btn btn-primary px-4" asp-action="Delete" asp-controller="User" asp-route-id="@item.Id">Удалить</a></td>
-                </tr>
-            </tbody>
-        }
-    </table>
-}
+    @foreach (var item in Model)
+    {
+        <div class="border rounded-3 border-primary w-75">
+            <div class="row">
+                <div class="col-3 p-3">
+                    <p class="h5 text-center">Фото</p>
+                    <img class="p-3" style='width:234px; height:300px; margin-left:5px;' src="data:image/jpeg;base64,@(Convert.ToBase64String(item.Photo??new byte[0]))" />
+                </div>
+                <div class="col">
+                    <div class="row">
+                        <div class="col-4 p-3">
+                            <p class="h5">Фамилия</p>
+                            <h6 class="text-black-50">@item.Surname</h6>
+                        </div>
+                        <div class="col-4 p-3">
+                            <p class="h5">Имя</p>
+                            <h6 class="text-black-50">@item.Name</h6>
+                        </div>
+                        <div class="col-4 p-3">
+                            <p class="h5">Отчество</p>
+                            <h6 class="text-black-50">@item.Patronymic</h6>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 p-3">
+                            <p class="h5">Адрес</p>
+                            <h6 class="text-black-50 text-break">@item.Address</h6>
+                        </div>
+                        <div class="col-4 p-3">
+                            <p class="h5">СНИЛС</p>
+                            <h6 class="text-black-50">@item.Snils</h6>
+                        </div>
+                        <div class="col-4 p-3">
+                            <p class="h5">Данные паспорта</p>
+                            <h6 class="text-black-50">@item.PassportInfo</h6>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 p-3">
+                            <p class="h5">Роль</p>
+                            <h6 class="text-black-50">@item.Role.Name</h6>
+                        </div>
+                        <div class="col-4 p-3">
+                            <p class="h5">Логин</p>
+                            <h6 class="text-black-50">@item.Account.Login</h6>
+                        </div>
+                        <div class="col-4 p-3">
+                            <p class="h5">Пароль</p>
+                            <h6 class="text-black-50">@item.Account.Password</h6>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-10 p-2 offset-6">
+                            <a class="btn btn-primary px-4" asp-action="EditForm" asp-controller="User" asp-route-id="@item.Id">Изменить</a>
+                            <a class="btn btn-primary px-4" asp-action="Delete" asp-controller="User" asp-route-id="@item.Id">Удалить</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+        </div>
+        <br/>
+    }
+</form>

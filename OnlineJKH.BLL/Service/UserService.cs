@@ -1,4 +1,5 @@
-﻿using OnlineJKH.BLL.Interfaces;
+﻿using Microsoft.AspNetCore.Http;
+using OnlineJKH.BLL.Interfaces;
 using OnlineJKH.DAL.EF;
 using OnlineJKH.DAL.Entities;
 
@@ -46,6 +47,15 @@ namespace OnlineJKH.BLL.Service
                 throw new Exception("Объект не найден!");
             }
             return user;
+        }
+        public byte[] Image(IFormFile formFile)
+        {
+            byte[] data = null;
+            using (var binReader = new BinaryReader(formFile.OpenReadStream()))
+            {
+                data = binReader.ReadBytes((int)formFile.Length);
+            }
+            return data;
         }
     }
 }

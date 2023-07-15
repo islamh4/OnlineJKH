@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using OnlineJKH.BLL;
 using OnlineJKH.BLL.Interfaces;
@@ -24,6 +25,7 @@ builder.Services.AddTransient<IAccountService, AccountService>();
 builder.Services.AddTransient<IExportExcelService, ExportExcelService>();
 builder.Services.AddScoped<DataManager>();
 builder.Services.AddControllersWithViews();
+builder.Services.AddCors();
 var app = builder.Build();
 app.UseAuthentication();
 app.UseAuthorization();
