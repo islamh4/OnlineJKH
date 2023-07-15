@@ -1,5 +1,5 @@
-﻿$("#Image").change(function (event) {
-    var files = event.target.files;
+﻿$("#Image").change(function (e) {
+    var files = e.target.files;
     $("#DisplayImage").attr("src", window.URL.createObjectURL(files[0]));
 });
 var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
