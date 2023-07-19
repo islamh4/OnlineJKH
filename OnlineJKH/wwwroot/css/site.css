@@ -32,3 +32,20 @@ nav.navbar .dropdown:hover > .dropdown-menu {
 a {
     font-size: 20px;
 }
+#photo{
+    background-color: blue;
+    color: white;
+}
+.rounded-3{
+    border-radius: 2rem !important;
+}
+.mr{
+    margin-right: 5rem !important;
+}
+.inputWidth {
+    width: 215px;
+    margin-bottom: -15px;
+}
+.inputTextArea{
+    width:676px;
+}

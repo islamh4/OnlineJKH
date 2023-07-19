@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using OnlineJKH.BLL;
@@ -42,8 +43,16 @@ namespace OnlineJKH.Controllers
         }
         [Authorize(Roles = "admin")]
         [HttpPost]
-        public ActionResult EditForm(User user)
+        public async Task<ActionResult> EditForm(User user, IFormFile? Image)
         {
+            if (Image != null)
+            {
+                user.Photo = _dataManager.UserService.Image(Image);
+            }
+            else
+            {
+                user.Photo = _db.Users.FirstOrDefault(m => m.Id == user.Id)?.Photo;
+            }
             if (ModelState.IsValid)
             {
                 if (user.Id == 0)

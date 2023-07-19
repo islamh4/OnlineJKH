@@ -29,11 +29,12 @@ namespace OnlineJKH.DAL.EF
             modelBuilder.Entity<Account>().HasData(account);
             modelBuilder.Entity<Role>().HasData(admin);
             modelBuilder.Entity<Role>().HasData(user);
-            modelBuilder.Entity<User>().HasData(new User { Id = 1, Surname = "Admin", Name = "Admin", Snils = "11111111111", PassportInfo = "1111111111", RoleId = admin.Id, AccountId = account.Id });
+            modelBuilder.Entity<User>().HasData(new User { Id = 1, Surname = "Admin", Name = "Admin", Snils = "11111111111", PassportInfo = "1111111111", RoleId = admin.Id, AccountId = account.Id});
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseLazyLoadingProxies().UseSqlServer();
         }
+
     }
 }

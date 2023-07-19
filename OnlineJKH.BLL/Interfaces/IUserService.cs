@@ -1,4 +1,5 @@
-﻿using OnlineJKH.DAL.Entities;
+﻿using Microsoft.AspNetCore.Http;
+using OnlineJKH.DAL.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,5 +15,6 @@ namespace OnlineJKH.BLL.Interfaces
         void Create(User user);
         User Get(int id);
         void Update(User user);
+        byte[] Image(IFormFile formFile);
     }
 }
