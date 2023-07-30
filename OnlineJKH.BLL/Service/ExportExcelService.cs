@@ -16,14 +16,14 @@ namespace OnlineJKH.BLL.Service
 {
     public class ExportExcelService : IExportExcelService
     {
-        EFDBContext db;
+        EFDBContext _db;
         public ExportExcelService(EFDBContext context) 
         {
-            db = context;
+            _db = context;
         }
         public byte[] ExportExcel()
         {
-            var data = db.PersonalAccounts.Select(m => new ExportExcel
+            var data = _db.PersonalAccounts.Select(m => new ExportExcel
             {
                 Number = m.Number,
                 FIO = (m.User.Surname + " " + m.User.Name + " " + m.User.Patronymic).ToString(),

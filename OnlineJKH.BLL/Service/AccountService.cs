@@ -19,6 +19,7 @@ namespace OnlineJKH.BLL.Service
         {
             var acc = _db.Accounts.FirstOrDefault(a => a.Id == user.Account.Id);
             _db.Accounts.Remove(acc);
+            _db.SaveChanges();
         }
 
         public ClaimsPrincipal Login(Account acc)
@@ -44,6 +45,7 @@ namespace OnlineJKH.BLL.Service
                 acc.Login = user.Account.Login;
                 acc.Password = user.Account.Password;
                 _db.Entry(acc).State = EntityState.Modified;
+                _db.SaveChanges();
             }
         }
     }

@@ -23,6 +23,7 @@ builder.Services.AddTransient<IReceiptService, ReceiptService>();
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<IAccountService, AccountService>();
 builder.Services.AddTransient<IExportExcelService, ExportExcelService>();
+builder.Services.AddTransient<IImportExcelService,ImportExcelService>();
 builder.Services.AddScoped<DataManager>();
 builder.Services.AddControllersWithViews();
 builder.Services.AddCors();

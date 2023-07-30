@@ -43,7 +43,7 @@ namespace OnlineJKH.Controllers
         }
         [Authorize(Roles = "admin")]
         [HttpPost]
-        public async Task<ActionResult> EditForm(User user, IFormFile? Image)
+        public ActionResult EditForm(User user, IFormFile? Image)
         {
             if (Image != null)
             {
