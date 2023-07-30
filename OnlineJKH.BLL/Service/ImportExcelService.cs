@@ -52,11 +52,12 @@ namespace OnlineJKH.BLL.Service
                         {
                             stringError.Append(" логин и пароль не должны совподать!");
                         }
-                        if (stringError.Length > 0)
+                        if (stringError.Length > 22)
                         {
                             stringError.Append(" Другие пользователи не были добавлены из-за не ожиданной ошибки исправте их!");
                             return stringError.ToString();
                         }
+                        stringError.Append($" добавлен! ");
                         var user = new User()
                         {
                             Surname = worksheet.Cells[i, 1].Value.ToString().Trim(),
