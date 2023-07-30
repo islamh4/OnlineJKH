@@ -34,8 +34,6 @@ function ButSumbit() {
                     console.log(data);
                     alert(data);
                 }
-                $('#modDialog').modal('hide');
-                location.reload();
             },
             complete: function () {
                 $('#modDialog').modal('hide');

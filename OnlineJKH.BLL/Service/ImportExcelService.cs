@@ -2,6 +2,7 @@
 using Castle.Components.DictionaryAdapter.Xml;
 using DocumentFormat.OpenXml.Spreadsheet;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Office.Interop.Excel;
 using OfficeOpenXml;
 using OnlineJKH.BLL.Interfaces;
 using OnlineJKH.DAL.EF;
@@ -28,6 +29,7 @@ namespace OnlineJKH.BLL.Service
             if (formFile == null)
             {
                 stringError.Append("Импортируйте файл! ");
+                return stringError.ToString();
             }
             using (var stream = new MemoryStream())
             {
@@ -39,25 +41,10 @@ namespace OnlineJKH.BLL.Service
                     var rowcount = worksheet.Dimension.Rows;
                     for (int i = 2 ; i <= rowcount; i++)
                     {
-                        stringError.Append($"Пользователь номер {i - 1}: ");
-                        for (int j = 1; j <= worksheet.Dimension.Columns; j++)
+                        if (ListError(worksheet, i))
                         {
-                            if (worksheet.Cells[i, j].Value == null)
-                            {
-                                stringError.Append(" не добавлен,");
-                                stringError.Append($" {worksheet.Cells[1, j].Value.ToString().Trim()} - пустая строка,");
-                            }
+                            continue;
                         }
-                        if (worksheet.Cells[i, 4].Value.ToString().Trim() == worksheet.Cells[i, 5].Value.ToString().Trim())
-                        {
-                            stringError.Append(" логин и пароль не должны совподать!");
-                        }
-                        if (stringError.Length > 22)
-                        {
-                            stringError.Append(" Другие пользователи не были добавлены из-за не ожиданной ошибки исправте их!");
-                            return stringError.ToString();
-                        }
-                        stringError.Append($" добавлен! ");
                         var user = new User()
                         {
                             Surname = worksheet.Cells[i, 1].Value.ToString().Trim(),
@@ -75,6 +62,30 @@ namespace OnlineJKH.BLL.Service
                 }
             }
             return stringError.ToString();
+        }
+        public bool ListError(ExcelWorksheet worksheet, int i)
+        {
+            bool bolid = false;
+            stringError.Append($"Пользователь номер {i - 1}: ");
+            for (int j = 1; j <= worksheet.Dimension.Columns; j++)
+            {
+                if (worksheet.Cells[i, j].Value == null)
+                {
+                    stringError.Append(" не добавлен,");
+                    stringError.Append($" {worksheet.Cells[1, j].Value.ToString().Trim()} - пустая строка,");
+                    bolid=true;
+                }
+            }
+            if (worksheet.Cells[i, 4].Value.ToString().Trim() == worksheet.Cells[i, 5].Value.ToString().Trim())
+            {
+                stringError.Append(" логин и пароль не должны совподать! ");
+                bolid = true;
+            }
+            if (!bolid)
+            {
+                stringError.Append($" добавлен! ");
+            }
+            return bolid;
         }
         public Account AccIndexNext(string login, string password)
         {
