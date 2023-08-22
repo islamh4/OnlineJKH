@@ -24,6 +24,7 @@ builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<IAccountService, AccountService>();
 builder.Services.AddTransient<IExportExcelService, ExportExcelService>();
 builder.Services.AddTransient<IImportExcelService,ImportExcelService>();
+builder.Services.AddTransient<IUserValidationService, UserValidationService>();
 builder.Services.AddScoped<DataManager>();
 builder.Services.AddControllersWithViews();
 builder.Services.AddCors();

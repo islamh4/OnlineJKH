@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using OnlineJKH.DAL.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

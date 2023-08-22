@@ -8,6 +8,8 @@ using Microsoft.Office.Interop.Excel;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.Text.Json;
+using System.Text;
+using OnlineJKH.DAL.Entities;
 
 namespace OnlineJKH.Controllers
 {
@@ -41,9 +43,10 @@ namespace OnlineJKH.Controllers
         [HttpPost]
         public JsonResult ImportUserPost(IFormFile excel)
         {
+            
             return Json(_dataManager.ImportExcelService.ImportExcel(excel));
         }
-        public IActionResult Privacy()
+    public IActionResult Privacy()
         {
             return View();
         }

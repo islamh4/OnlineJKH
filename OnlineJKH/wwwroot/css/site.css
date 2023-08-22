@@ -49,3 +49,6 @@ a {
 .inputTextArea{
     width:676px;
 }
+.input-validation-error {
+    border: 1px solid #f00;
+}
