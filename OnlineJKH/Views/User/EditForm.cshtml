@@ -5,6 +5,7 @@
 <script type="text/javascript"  src="~/lib/jquery/dist/jquery.min.js"></script>
 <form asp-action="EditForm" id="formAcc" asp-controller="User" enctype="multipart/form-data" style="width:80%; margin-left:10%;">
     <div class="border border-primary rounded-3 m-4 p-1 container" id="Cloned">
+        @Html.ValidationSummary(true)
         <div class="row">
             <div class="col-3">
                 <p class="h5 text-center" style="margin-left: 75px;">Фото</p>

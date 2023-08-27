@@ -52,3 +52,7 @@ a {
 .input-validation-error {
     border: 1px solid #f00;
 }
+.validation-summary-errors {
+    font-weight: bold;
+    color: #f00;
+}

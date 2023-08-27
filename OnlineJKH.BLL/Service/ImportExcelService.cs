@@ -16,9 +16,9 @@ namespace OnlineJKH.BLL.Service
             _db = db;
             _userValidationService = userValidationService;
         }
-        StringBuilder stringError = new StringBuilder("Уведомление!!!");
         public string ImportExcel(IFormFile formFile) 
         {
+            StringBuilder stringError = new StringBuilder();
             using (var stream = new MemoryStream())
             {
                 formFile.CopyToAsync(stream);

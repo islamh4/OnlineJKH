@@ -16,20 +16,20 @@ namespace OnlineJKH.BLL.Service
         {
             _db = db;
         }
-        StringBuilder stringError = new StringBuilder();
         public (StringBuilder, User) UserValidation(User user)
         {
+            StringBuilder stringError = new StringBuilder();
             stringError.Append($"\nПользовтель {user.Surname} {user.Name} {user.Patronymic}: не добавлен! \n !!!ОШИБКИ!!! ");
             bool userTrue = false;
             if (user.Surname == null || user.Name == null)
             {
                 userTrue = true;
-                stringError.Append($"\nФамилия и Имя должны быть заполнены!");
+                stringError.Append($"\nПоля Фамилия и Имя обязательны для заполнения!");
             }
             if (user.Surname?.Length < 3 || user.Name.Length < 3)
             {
                 userTrue = true;
-                stringError.Append($"\nДлина Фамилия и Имя составляет минимум 3 символов!");
+                stringError.Append($"\nДлина полей Фамилия и Имя составляет минимум 3 символа!");
             }
             if (user.Account.Login == user.Account.Password)
             {
@@ -39,18 +39,18 @@ namespace OnlineJKH.BLL.Service
             if (_db.Users.Any(m => m.Account.Login == user.Account.Login))
             {
                 userTrue = true;
-                stringError.Append($"\nТаким логином уже пользователь существует!");
+                stringError.Append($"\nПользователь с таким логином уже существует!");
             }
-            bool userProf = _db.Users.Any(m => m.PassportInfo == user.PassportInfo);
-            userProf = _db.Users.Any(m => m.PassportInfo == user.Snils);
+            var userProf = _db.Users.Any(m => m.PassportInfo == user.PassportInfo) || _db.Users.Any(m => m.Snils == user.Snils);
             if (userProf)
             {
-                stringError.Append($"\nТакими данными как паспорт и СНИЛС уже пользователь существует!");
+                userTrue = true;
+                stringError.Append($"\nПользователь с такими паспортными данными и СНИЛС уже существует!");
             }
             if (!userTrue)
             {
                 stringError.Remove(0, stringError.Length);
-                stringError.Append($"Пользовтель {user.Surname} {user.Name} {user.Patronymic}: добавлен!");
+                stringError.Append($"Пользователь {user.Surname} {user.Name} {user.Patronymic}: добавлен!");
                 return (stringError, user);
             }
             return (stringError, null);
