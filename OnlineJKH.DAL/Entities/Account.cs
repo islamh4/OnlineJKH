@@ -12,9 +12,11 @@ namespace OnlineJKH.DAL.Entities
         public int Id { get; set; }
         [Phone]
         [Display(Name = "Логин")]
+        [Required(ErrorMessage = "Логин обязательно!")]
         public string Login { get; set; }
         [MinLength(8)]
         [Display(Name = "Пароль")]
+        [Required(ErrorMessage = "Пароль обязательно!")]
         public string Password { get; set; }
     }
 }

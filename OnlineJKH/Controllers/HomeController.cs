@@ -4,6 +4,12 @@ using OnlineJKH.Models;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Authorization;
 using System.IO;
+using Microsoft.Office.Interop.Excel;
+using Microsoft.AspNetCore.Html;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System.Text.Json;
+using System.Text;
+using OnlineJKH.DAL.Entities;
 
 namespace OnlineJKH.Controllers
 {
@@ -29,7 +35,18 @@ namespace OnlineJKH.Controllers
                 FileDownloadName = $"FileAdmin.xlsx"
             };
         }
-        public IActionResult Privacy()
+        [HttpGet]
+        public IActionResult ImportUser()
+        {
+            return PartialView("~/Views/PartialView/ModalWindow.cshtml");
+        }
+        [HttpPost]
+        public JsonResult ImportUserPost(IFormFile excel)
+        {
+            
+            return Json(_dataManager.ImportExcelService.ImportExcel(excel));
+        }
+    public IActionResult Privacy()
         {
             return View();
         }

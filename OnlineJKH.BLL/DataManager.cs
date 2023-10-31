@@ -15,12 +15,14 @@ namespace OnlineJKH.BLL
         private IUserService _userService;
         private IAccountService _accountService;
         private IExportExcelService _exportExcelService;
+        private IImportExcelService _importExcelService;
         public DataManager(IPersonalAccountService personalAccountService, 
             IMeterReadingService meterReadingService, 
             IReceiptService receiptService, 
             IUserService userService, 
             IAccountService accountService, 
-            IExportExcelService exportExcelService)
+            IExportExcelService exportExcelService,
+            IImportExcelService importExcelService)
         {
             _personalAccountService = personalAccountService;
             _meterReadingService = meterReadingService;
@@ -28,6 +30,7 @@ namespace OnlineJKH.BLL
             _userService = userService;
             _accountService = accountService;
             _exportExcelService = exportExcelService;
+            _importExcelService = importExcelService;
         }
         public IPersonalAccountService PersonalAccountService { get { return _personalAccountService; } }
         public IMeterReadingService MeterReadingService { get {  return _meterReadingService; } }
@@ -35,5 +38,6 @@ namespace OnlineJKH.BLL
         public IUserService UserService { get { return _userService; } }
         public IAccountService AccountService { get { return _accountService; } }
         public IExportExcelService ExportExcelService { get { return _exportExcelService; } }
+        public IImportExcelService ImportExcelService { get { return _importExcelService; } }
     }
 }

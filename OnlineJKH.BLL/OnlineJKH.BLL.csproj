@@ -20,8 +20,10 @@
 
   <ItemGroup>
     <PackageReference Include="ClosedXML" Version="0.101.0" />
+    <PackageReference Include="EPPlus" Version="6.2.7" />
     <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.9" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.17" />
+    <PackageReference Include="Microsoft.Office.Interop.Excel" Version="15.0.4795.1001" />
   </ItemGroup>
 
   <ItemGroup>

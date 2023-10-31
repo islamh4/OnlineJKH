@@ -1,0 +1,16 @@
+﻿<div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title">Импорт пользователей</h5>
+        <button class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+    </div>
+    <div class="modal-body">
+        <form action="" method="post" enctype="multipart/form-data" >
+            <input type="file" name="excel" id="fileExcel" accept=".xlsx,.xls" required/>
+            <a href="/Шаблон/пользователи.xlsx" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Строго делайте по шаблону!" download="Шаблон">Шаблон</a>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary m-1" data-bs-dismiss="modal">Закрыть</button>
+        <input type="button" class="btn btn-primary m-1" onclick="ButSumbit()" value="Импорт" />
+    </div>
+</div>

@@ -23,16 +23,20 @@
                         <li class="nav-item">
                             <a class="nav-link active" role="button" asp-controller="Receipt" asp-action="Index">Квитанции</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" data-bs-offset="80,90" aria-expanded="false">
-                                Администрирование
-                            </a>
-                            <ul class="dropdown-menu w-100" role="menu" style="background-color:oldlace;">
-                                <li><a class="dropdown-item" href="/PersonalAccount/Index">Лицевые счета</a></li>
-                                <li><a class="dropdown-item" href="/User/Index">Пользователи</a></li>
-                                <li><a class="dropdown-item" href="/Home/ExportExcel">Экспорт Excel</a></li>
-                            </ul>
-                        </li>
+                        @if (User.IsInRole("admin"))
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"style="width:245px;" data-bs-offset="80,90" aria-expanded="false">
+                                    Администрирование
+                                </a>
+                                <ul class="dropdown-menu w-100" role="menu" style="background-color:oldlace;">
+                                    <li><a class="dropdown-item" href="/PersonalAccount/Index">Лицевые счета</a></li>
+                                    <li><a class="dropdown-item" href="/User/Index">Пользователи</a></li>
+                                    <li><a class="dropdown-item" href="/Home/ExportExcel">Экспорт Excel</a></li>
+                                    <li><a class="dropdown-item" href="#" id="modalWin">Импорт пользователей</a></li>
+                                </ul>
+                            </li>
+                        }
                         <li class="nav-item">
                             <a class="nav-link active" role="button" asp-controller="Account" asp-action="Logout">Выйти</a>
                         </li>
@@ -41,12 +45,15 @@
             </div>
         </nav>
     </header>
+    <div id="liveAlertPlaceholder"></div>
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
-
+    <div class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" id="modDialog" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered" id="dialogContent"></div>
+    </div>
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2023 - OnlineJKH - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
@@ -55,6 +62,7 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
