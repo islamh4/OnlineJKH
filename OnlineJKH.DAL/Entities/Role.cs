@@ -11,6 +11,7 @@ namespace OnlineJKH.DAL.Entities
     {
         public int Id { get; set; }
         [Display(Name="Роль")]
+        [Required(ErrorMessage = "Роль обязательно!")]
         public string Name { get; set; }
     }
 }

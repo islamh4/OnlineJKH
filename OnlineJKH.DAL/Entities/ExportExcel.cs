@@ -8,8 +8,8 @@ namespace OnlineJKH.DAL.Entities
 {
     public class ExportExcel
     {
-        public string Number { get; set; }
-        public string FIO { get; set; }
-        public string Snils { get; set; }
+        public string? Number { get; set; }
+        public string? FIO { get; set; }
+        public string? Snils { get; set; }
     }
 }

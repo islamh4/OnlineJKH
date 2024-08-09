@@ -26,10 +26,12 @@ namespace OnlineJKH.DAL.Entities
         [Required(ErrorMessage = "СНИЛС обязательно!")]
         [Display(Name = "СНИЛС")]
         [StringLength(11, MinimumLength = 11,ErrorMessage = "Длина СНИЛС составляет 11 символов, пожалуйста, введите корректно.")]
+        [RegularExpression(@"\d{11}", ErrorMessage = "Должны быть только числа")]
         public string Snils { get; set; }
         [Required(ErrorMessage = " Данные паспорта обязательно!")]
         [Display(Name = "Данные паспорта")]
         [StringLength(10, MinimumLength = 10, ErrorMessage = "Длина паспорта составляет 10 символов, пожалуйста, введите корректно.")]
+        [RegularExpression(@"\d{10}", ErrorMessage = "Должны быть только числа")]
         public string PassportInfo { get; set; }
         public int RoleId { get; set; }
         public virtual Role? Role { get; set; }

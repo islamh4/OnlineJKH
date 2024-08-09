@@ -35,15 +35,13 @@ namespace OnlineJKH.Controllers
                 ViewBag.Button = "Добавить";
                 return View();
             }
-
-
             ViewBag.Button = "Сохранить";
             ViewBag.NameView = "Изменение";
             return View(_dataManager.UserService.Get(id));
         }
         [Authorize(Roles = "admin")]
         [HttpPost]
-        public async Task<ActionResult> EditForm(User user, IFormFile? Image)
+        public ActionResult EditForm(User user, IFormFile? Image)
         {
             if (Image != null)
             {
@@ -52,6 +50,10 @@ namespace OnlineJKH.Controllers
             else
             {
                 user.Photo = _db.Users.FirstOrDefault(m => m.Id == user.Id)?.Photo;
+            }
+            if (_db.Users.Any(m => m.Account.Login == user.Account.Login))
+            {
+                ModelState.AddModelError("", "Пользователь с таким логином уже существует!");
             }
             if (ModelState.IsValid)
             {
