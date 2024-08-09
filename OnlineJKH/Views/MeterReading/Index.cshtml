@@ -5,6 +5,7 @@
 @using (Html.BeginForm())
 {
     <a asp-action="EditForm" asp-controller="MeterReading" class="btn btn-primary m-3 mx-0">Добавить показания счетчика</a>
+    <div id="message" class="border-5 border-succes" style="width:458px; color:green;"><h2>@ViewBag.Message</h2></div>
     <table class="table table-bordered border-dark text-center align-content-center w-75">
         <thead class="bg-primary">
             <tr class="border-top-0">
@@ -25,3 +26,13 @@
         }
     </table>
 }
+<script>
+    const element = document.getElementById("message")
+    if (element.innerText) {
+        element.classList.add('border-bottom', 'm-3', 'p-1');
+    }
+    function deleteMessage() {
+        document.getElementById("message").remove();
+    }
+    setTimeout(deleteMessage, 2000);
+</script>
